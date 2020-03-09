@@ -1,0 +1,27 @@
+body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+ul.checkbox {
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  list-style: none;
+}
+ul.checkbox li input {
+  margin-right: .25em;
+}
+
+ul.checkbox li {
+  border: 1px transparent solid;
+}
+
+ul.checkbox li:hover, ul.checkbox li .focus{
+  background-color: lightyellow;
+  border: 1px gray solid;
+  width: 12em;
+}

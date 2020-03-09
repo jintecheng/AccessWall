@@ -1,0 +1,38 @@
+{{define "index"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AccessWall File Server</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+        <link href="static/css/starter-template.css" rel="stylesheet">
+        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.js"></script>
+        <script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
+        </script>
+    </head>
+    <body>
+        <div>
+            {{template "upload"}}
+        </div>
+        <div>
+            {{template "filemanager" .}}
+        </div>
+    </body>
+</html>
+{{end}}

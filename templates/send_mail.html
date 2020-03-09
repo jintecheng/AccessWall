@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send mail</title>
+    {{ template "module" }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/api/send_mail" id="frm_email_config">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md">
+                        <label for="input_smtp_url">SMTP URL</label>
+                        <input type="text" class="form-control" id="input_smtp_address" name="surl">
+                    </div>
+                    <div class="col-sm">
+                        <label for="input_smtp_port">SMTP Port</label>
+                        <input type="text" class="form-control" id="input_smtp_port" name="sport">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="input_imap_url">IMAP URL</label>
+                        <input type="text" class="form-control" id="input_imap_url" name="iurl">
+                    </div>
+                    <div class="col-sm">
+                        <label for="input_imap_port">IMAP PORT</label>
+                        <input type="text" class="form-control" id="input_imap_port" name="iport">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="input_pop_url">POP3 url</label>
+                        <input type="text" class="form-control" id="input_pop_url" name="purl">
+                    </div>
+                    <div class="col-sm">
+                        <label for="input_pop_port">POP3 PORT</label>
+                        <input type="text" class="form-control" id="input_pop_port" name="pport">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

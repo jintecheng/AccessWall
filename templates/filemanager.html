@@ -1,0 +1,215 @@
+{{define "filemanager"}}
+<h3>Directory : {{.PathName}} </h3>
+<div >
+    <div class="topnav">
+        <button class="menubtn" id="btn_delete" >Delete</button>
+        <button class="menubtn" id="btn_createdir" >New</button>
+        <button class="menubtn" id="btn_editfile" >Edit</button>
+        <button class="meunbtn" id="btn_copyurl">Copy url</button>
+        <button class="meunbtn" id="btn_logout">Logout</button>
+    </div>
+    <div id="div_cdir" style="display: none">
+        <input id="input_makedir" type="text" name="dirname" placeholder="folder name"/>
+        <button id="btn_makedir">Make</button>
+    </div>
+    <fieldset>
+    <ul class="filelist">
+    {{range .Files}}
+        {{if .Dir}}
+        <div>
+           <input type="checkbox" value="{{.Path}}"/><a href="/?dir={{.Path}}">{{.Name}}</a>
+        </div>
+        {{end}}
+    {{end}}
+    {{range .Files}}
+        {{if not .Dir}}
+        <div>
+            <input type="checkbox" value="{{.Path}}" /><label>{{.Name}}</label>
+        </div>
+        {{end}}
+    {{end}}
+    </ul>
+    </fieldset>
+</div>
+<h4>Files permission editor</h4>
+<fieldset>
+<div class="div_editfile">
+    <form action="/filesperm" method="POST" id="id_filesperm">
+        <label>Files</label>
+        <div>
+            <textarea class="txt_editclass" id="it_filenames" name="edit_filenames" rows="5" ></textarea>
+        </div>
+        <label>Emails</label>
+        <div>
+            <textarea class="txt_editclass" id="it_emails" name="edit_emails" rows="7" ></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Accept">
+        </div>
+    </form>
+</div>
+</fieldset>
+<script type="text/javascript">
+    $("#btn_copyurl").click(function(){
+        var $temp = $(`<input>`);
+        $("body").append($temp);
+        var urls = [];
+        var copyUrl = "";
+        var urlPort = "";
+        if(location.port != ""){
+            urlPort = ":" + location.port;
+        }
+        $.each($(":checkbox:checked"), function(){
+            urls.push("http://"+document.location.hostname+urlPort+"/link?file="+$(this).val());
+        });
+        copyUrl = urls.join(";").replace("./Users/", "/");
+        $temp.val(copyUrl).select();
+        document.execCommand("Copy");
+        $temp.remove();
+    });
+    $("#id_filesperm").submit(function(){
+        $.ajax({
+            type: "POST",
+            url: "/filesperm",
+            data: $("#id_filesperm").serialize()
+        }).done(function(msg){
+            alert("Success!! File permission was changed");
+            location.reload();
+        })
+    });
+    $("#btn_createdir").click(function(){
+        var tagStr = `
+                <input id="input_makedir" type="text" name="dirname" placeholder="folder name"/>
+                <button id="btn_makedir">Make</button>
+        `;
+        $("#div_cdir").show();
+    });
+
+    $("#btn_makedir").click(function(){
+        var dirName = $("#input_makedir").val();
+        if (dirName == ""){
+            alert("Input folder name");
+            return
+        }
+        $.ajax({
+            method: "POST",
+            url: "/makedir",
+            data : {'dirname' : dirName}
+        }).done(function (msg){
+            alert("Result for make dir : " + msg);
+            location.reload();
+        });
+    });
+
+    $("#btn_delete").click(function(){
+        var filePaths =[];
+        var url = "";
+
+       $.each($(":checkbox:checked"), function(){
+           filePaths.push($(this).val());
+       });
+      
+      if(filePaths.length > 0){
+       var result = confirm("Delete files? : "+ filePaths);
+       if(!result){
+           return
+       }
+        $.ajax({
+            method: "POST",
+                url: "/delete",
+                data : {'dirs[]' : filePaths}
+            }).done(function (msg){
+                alert("Result for delete request : " + msg);
+                location.reload();
+            });
+       }
+    });
+
+    //searchfile 로 파일의 내용 중 guest 를 불러 온다.
+    $("#btn_editfile").click(function(){
+        var files = [];
+        $.each($(":checkbox:checked"), function(){
+            files.push($(this).val());
+            $.ajax({
+                type: "POST",
+                url: "/searchfile",
+                data :
+                    {"name": $(this).val()}
+            }).done(function (msg){
+                $("#it_emails").val(msg);
+            });
+        });
+        $("#it_filenames").val(files.join(";"));
+    });
+    $("#btn_logout").click(function(){
+        window.location.href="/logout";
+    });
+
+</script>
+<style>
+    .topnav {
+        background-color: #333;
+        overflow: hidden;
+    }
+
+    .topnav button {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 7px 8px;
+        background-color:inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    .topnav button:hover {
+        color: red;
+    }
+
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+
+    .dropdown .menubtn{
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 7px 8px;
+        background-color:inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    .dropdown_content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown_content input{
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .dropdown:hover .dropdown-content{
+        display: block;
+    }
+
+    .txt_editclass {
+        width: 100%
+    }
+
+</style>
+{{end}}

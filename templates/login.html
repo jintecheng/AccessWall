@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link type="text/css" href="static/css/starter-template.css" rel="stylesheet">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <div class="frm-container">
+            <p class="frm-header">AccessWall 통합 로그인</p>
+            <form method="POST" action="/login" id="frm_hqblogin">
+                <label>Usernae:</label>
+                <input id="in_email" placeholder="Email" type="text" name="email"></br>
+                <label>Password:</label>
+                <input id="in_password" type="password" name="password"></br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <a href="/signup">AccessWall Sign up</a>
+        <div class="container">
+            <div>
+                <p class="frm-header">Social network Sign in</p>
+            </div>
+            <div>
+                <div>
+                    <h3 >Please, Login</h3>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <a href="/auth/login/google">Google</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        /*
+        $("#frm_hqblogin").submit(function(){
+            var email = $("#in_email").val();
+            var password = $("#in_password").val();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8001/api/user/login",
+                data: $("#frm_hqblogin").serialize(),
+                dataType: 'json',
+                success: function(result){
+                    console.log(result.d);
+                    alert(result.d);
+                },
+                error: function (err, result) {
+                    console.log(err);
+                    alert(err);}
+            });
+        });
+        */
+        </script>
+    </body>
+</html>

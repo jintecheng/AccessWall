@@ -1,0 +1,10 @@
+version: "3.3"
+
+services:
+    mongodb:
+        container_name: 'hqbfs_d'
+        image: 'mongo:latest'
+        ports:
+            - '27017:27017'
+        volumes:
+            - "/Users/jamesryu/go/src/github.com/jintecheng/accesswall/hqbfs_db:/data/db"

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Login and Sessions Signup</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link type="text/css" href="static/css/starter-template.css" rel="stylesheet">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <p class="class_header">Sign up</p>
+            <form id="frm_register" method="POST" action="/register">
+                <label>Username:</label>
+                <input type="text" name="reg_user" id="input_username"><br/>
+                <label>email:</label>
+                <input type="text" name="reg_email" id="input_email"><br/>
+                <label>Password:</label>
+                <input type="password" name="password" id="input_passwdf"><br/>
+                <label>Check password:</label>
+                <input type="password" id="input_passwds"><br/>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <script type="text/javascript">
+        $("#frm_register").submit(function(){
+            var username = $("#input_username").val();
+            var email = $("#input_email").val();
+            var passwdf = $("#input_passwdf").val();
+            var passwds = $("#input_passwds").val();
+            if(username == "" || email == "" || passwdf == ""){
+                alert("Input user information.");
+            }
+
+            if(passwdf != passwds){
+                alert("Check passwords");
+                $("#input_passwds").val();
+            }
+
+            $.ajax({
+                type:"POST",
+                url: "/register",
+                data: $("#frm_register").serialize(),
+            }).done(function(msg){
+                if (msg == "true"){
+                    alert("Register Success!! login please");
+                    window.location.href = window.location.hostname+"/login";
+                }else if(msg == "false"){
+                    alert("Username or email is existed!");
+                    location.reload();
+                }
+            });
+
+        });
+        </script>
+    </body>
+</html>
