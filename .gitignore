@@ -67,7 +67,7 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-Users/
-hqbfs_db/
-vendor/
+Users/**
+hqbfs_db/**
+vendor/**
 
