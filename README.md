@@ -42,10 +42,6 @@
 
 ###### 향후 업데이트 예정입니다.
 
-##### - 배포 라이센스 
-
-###### 현재 적용할 라이센스를 검토중에 있습니다. 
-
 ##### - 솔루션 총책임자 
 
 ###### 최준경 이사
@@ -53,3 +49,19 @@
 ##### - 개발 이슈 관련 연락처
 
 ###### <jmryu@jintech2ng.co.kr>
+
+##### - 배포 라이센스 
+
+Copyright Jintecheng Co.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
