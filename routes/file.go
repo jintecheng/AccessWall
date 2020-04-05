@@ -20,6 +20,9 @@ type FileInfos struct {
 	PathName string
 }
 
+// getFileLists 파일 리스트를 가져온다.
+// FileInfos 는 특정 패스내의 파일 배열 구조체
+// error 에러 메세지
 func getFileLists(p string) (FileInfos, error) {
 	fs := []File{}
 	result := FileInfos{}
