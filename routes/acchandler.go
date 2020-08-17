@@ -52,7 +52,7 @@ func hqbLogin(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "json parse error")
 	}
 
-	_, _ = SendJsonPost(jsonBytes, "http://localhost:8001/api/user/login")
+	_, _ = SendJsonPost(jsonBytes, "http://localhost:9002/api/user/login")
 	http.Redirect(w, r, "/", http.StatusFound)
 	/*
 		if err != nil {
@@ -69,7 +69,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	email := r.PostFormValue("reg_email")
 	password := r.PostFormValue("password")
 
-	resp, err := http.PostForm("http://localhost:8001/api/user/new", url.Values{"name": {name}, "email": {email}, "password": {password}})
+	resp, err := http.PostForm("http://localhost:9002/api/user/new", url.Values{"name": {name}, "email": {email}, "password": {password}})
 	if err != nil {
 		panic(err)
 	}
@@ -108,7 +108,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprint(w, "Json parse error")
 		}
 
-		resultBytes, err := SendJsonPost(jsonBytes, "http://localhost:8001/api/user/new")
+		resultBytes, err := SendJsonPost(jsonBytes, "http://localhost:9002/api/user/new")
 	*/
 
 	createResult := &CreateResult{}

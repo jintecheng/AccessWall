@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html onloadstart="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content=""> {{ template "_head" }}
+    <title>로그인</title>
+</head>
+
+<body class="bg-gradient-primary">
+    <div id="login_wrapper" class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-9">
+                <div class="card o-hidden border-0 my-5 shadow-lg">
+                    <div class="card-body p-0 ">
+
+                        <!-- Nested Row within Card Body -->
+
+                        <div class="p-5">
+                            <div class="text-center">
+                                <a href="/login"><img src="img\aw_icon.png" alt="placeholder" width="150px" style="margin-bottom: 25px;" /></a>
+                            </div>
+
+                            <!-- Login form -->
+                            <form id="f1" name="f1" class="user" action="/loginTest" method="POST">
+                                <div class="form-group ">
+                                    <label for="id ">아이디</label>
+                                    <input type="text " id="id " name="id" class="form-control form-control-user" name="id" placeholder="ID">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="pw ">비밀 번호</label>
+                                    <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="Password">
+                                </div>
+                                <input type="submit" id="bnt_login" class="btn btn-primary btn-user btn-block" value="로그인">
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/join">Create an Account!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <!-- <div class="fadeIn first ">
+            <img src="img\aw_icon.png " style="padding: 15px; width: 150px; height: auto; margin-bottom: 25px; " id="icon " alt="암호화 ">
+        </div> -->
+
+        <!-- Login form -->
+        <!-- <form id="f1 " name="f1 " class="user " action="/loginTest " method="POST ">
+            <label for="id ">아이디</label><input type="text " id="id " name="id " class="fadeIn second " name="id " placeholder="ID "><br><br>
+            <label for="pw ">비밀 번호</label><input type="password " id="pw " name="pw " class="fadeIn second " name="pw " placeholder="Password "><br><br><br>
+
+            <input type="submit " id="bnt_login " class="btn btn-primary btn-user btn-block " value="로그인 "> -->
+        <!-- <input type="button " id="bnt_login " class="fadeIn fourth " style="margin-top: 20px; " value="로그인 " onclick='loginPost();'> -->
+
+        <!-- </form>
+
+        <a href="/join ">회원 가입</a>
+    </div> -->
+
+        <script>
+            // window.onload = function() {
+            //     alert("첫번째 window.onload ");
+            // };
+            sessionStorage.setItem('eid', " ");
+        </script>
+
+</body>
+
+</html>

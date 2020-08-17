@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {{ template "_head" }}
+    <title>회원 가입</title>
+</head>
+
+<body class="bg-gradient-primary">
+    <div id="login_wrapper" class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+
+                        <!-- Nested Row within Card Body -->
+
+                        <div class="p-5">
+                            <div class="text-center">
+                                <a href="/login"><img src="img\aw_icon.png" alt="placeholder" width="150px" style="margin-bottom: 25px;" /></a>
+                            </div>
+                            <!-- Login form -->
+
+                            <form action="/register" method="POST">
+
+                                <label for="name">이름</label> <input type="text" id="name" class="form-control form-control-user" name="name" placeholder="Name" value="">
+                                <label for="id">아이디</label> <input type="text" id="id" class="form-control form-control-user" name="id" placeholder="ID">
+                                <label for="pw1">비밀번호</label> <input type="password" id="password1" class="form-control form-control-user" name="password1" placeholder="Password">
+                                <label for="pw2">비밀번호 확인</label> <input type="password" id="password2" class="form-control form-control-user" name="password2" placeholder="Password">
+                                <hr>
+                                <div id="setMailSer">
+                                    <input type="radio" id="chk_info" name="chk_info" value="imap" checked="checked">IMAP
+                                    <input type="radio" id="chk_info" name="chk_info" value="pop">POP3
+
+                                    <label for="setMailServer"> 이메일 서버: </label>
+                                    <select id="setMailServer" onchange="setEmailServer(this.value)">
+                                           <option value="">직접 입력</option>
+                                       </select><br>
+
+                                    <form id="setf" name="setf">
+                                        <input type="text" id="imap_add" name="imap_add" class="form-control form-control-user" placeholder="주소" style="margin-bottom: 3px;">
+                                        <input type="text" id="imap_port" name="imap_port" class="form-control form-control-user" placeholder="포트번호" style="margin-bottom: 5px;">
+                                        <label for="smtp">SMTP </label> <input type="text" id="smtp_add" name="smtp_add" class="form-control form-control-user" placeholder="SMTP 주소" style="margin-bottom: 3px;">
+                                        <input type="text" id="smtp_port" name="smtp_port" class="form-control form-control-user" placeholder="SMTP 포트 번호" style="margin-bottom: 5px;">
+                                        <label for="email">이메일 </label><input type="email" id="email" class="form-control form-control-user" name="email" class="form-control form-control-user" placeholder="Email" style="margin-bottom: 5px;">
+                                        <label for="set_pw">이메일 비밀번호 </label><input type="password" id="mail_passwd" name="mail_passwd" class="form-control form-control-user" placeholder="비밀번호">
+
+                                </div>
+                                <br>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" id="bntJoin" value="회원가입">
+                                <!-- <input type="button" class="btn btn-primary btn-user btn-block" onclick="goBack()" value="취소"> -->
+                                </form>
+
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/login">Cancel</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

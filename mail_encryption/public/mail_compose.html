@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메일 쓰기</title>
+</head>
+
+<body id="page-top">
+
+    <div id="wrapper">
+        {{ template "_menu" }}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+                {{ template "_header" }}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- 
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. 
+                        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">
+                            official DataTables documentation</a>.</p> -->
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div>
+
+                                <table id="dataTable" width="100%" cellspacing="0" style="table-layout:fixed; border-collapse: separate;border-spacing: 0 10px; ">
+                                    <colgroup>
+                                        <col width="120px" />
+                                        <col width="*" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td> <label for="writeTo">받는 사람</label></td>
+                                            <td> <input type="email" id="writeTo" placeholder="To" style="width: 100%" value="{{.Mto}}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="enTitle">제목</label></td>
+                                            <td><input type="text" id="enTitle" placeholder="Title" style="width: 100%"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="enck" class="custom-label">암호화</label>
+                                                <input type="checkbox" id="enck" name="enck" value="enck" onclick="write_enck()">
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span id="en_sub" style="display: none; height: 30px;">
+                                                            <label for="entitle">제목</label>
+                                                            <input type="checkbox" id="chktitle" name="chktitle" value="chktitle">
+                                                            <label for="enms">내용</label>
+                                                            <input type="checkbox" id="chksource" name="chksource" value="chksource">&nbsp;
+                                                            <input type="text" id="enpw" name="enpw" placeholder="암호 입력">&nbsp;
+                                                            <!-- <button type="button"  class="btn-sm btn-primary">복사</button> -->
+                                                            <input class="btn-sm btn-primary" type="button" id="btnEnc" value="암호화">&nbsp;
+                                                            <input class="btn-sm btn-primary" type="button" id="btnDec" value="복호화">
+                                                        </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <span class="col-sm-12"><textarea class="form-control" id="enSource" rows="35" cols="125"></textarea></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" onclick="goBack()">취소</button>
+                                <button class="btn btn-primary" type="button" onclick="Write()">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> 전송
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Jintecheng 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", e => {
+            var flag1 = true;
+            var flag2 = true;
+            var flag3 = true;
+            var flag4 = true;
+            btnEnc.addEventListener('click', e => {
+                var chk1 = document.getElementById('chktitle').checked;
+                var chk2 = document.getElementById('chksource').checked;
+
+                var btnEnc = document.getElementById('btnEnc');
+                var btnDec = document.getElementById('btnDec');
+                var source = document.getElementById('enSource').value;
+                var title = document.getElementById('enTitle').value;
+                var password = document.getElementById('enpw').value;
+                if (chk1 && chk2 && flag1 && flag2) {
+                    if (title == "" || source == "") {
+                        alert("제목/내용 공백 불가!");
+                    } else {
+                        flag1 = false;
+                        flag2 = false;
+                        flag3 = true;
+                        flag4 = true;
+                        var encrypted1 = CryptoJS.AES.encrypt(source, password);
+                        var encrypted2 = CryptoJS.AES.encrypt(title, password);
+                        // console.log(encrypted.toString())
+                        document.getElementById('enSource').value = encrypted1;
+                        document.getElementById('enTitle').value = encrypted2;
+                    }
+                } else if (chk1 && flag1) {
+                    if (title == "") {
+                        alert("제목 공백 불가!");
+                    } else {
+
+                        flag1 = false;
+                        flag3 = true;
+                        var encrypted2 = CryptoJS.AES.encrypt(title, password);
+                        // console.log(encrypted.toString())
+                        document.getElementById('enTitle').value = encrypted2;
+                    }
+                } else if (chk2 && flag2) {
+                    if (title == "" || source == "") {
+                        alert("내용 공백 불가!");
+                    } else {
+
+                        flag2 = false;
+                        flag4 = true;
+                        var encrypted1 = CryptoJS.AES.encrypt(source, password);
+                        // console.log(encrypted.toString())
+                        document.getElementById('enSource').value = encrypted1;
+                    }
+                } else if (chk1 == false && chk2 == false) {
+                    alert("제목/내용 선택 필수");
+                } else {
+                    alert("암호화 중복 적용 불가");
+                }
+            })
+
+            btnDec.addEventListener('click', e => {
+                var chk1 = document.getElementById('chktitle').checked;
+                var chk2 = document.getElementById('chksource').checked;
+
+                var btnEnc = document.getElementById('btnEnc');
+                var btnDec = document.getElementById('btnDec');
+
+                var title = document.getElementById('enTitle').value;
+                var password = document.getElementById('enpw').value;
+                var source = document.getElementById('enSource').value;
+
+                if (chk1 && chk2 && flag3 && flag4) {
+                    var decrypted1 = CryptoJS.AES.decrypt(title, password);
+                    var decrypted2 = CryptoJS.AES.decrypt(source, password);
+
+                    if (decrypted1.toString(CryptoJS.enc.Utf8) == "") {
+                        alert("암호 틀림");
+                    } else {
+                        document.getElementById('enTitle').value = decrypted1.toString(CryptoJS.enc.Utf8);
+                        document.getElementById('enSource').value = decrypted2.toString(CryptoJS.enc.Utf8);
+                        flag3 = false;
+                        flag4 = false;
+                        flag1 = true;
+                        flag2 = true;
+                    }
+                } else if (chk1 && flag3) {
+                    var decrypted = CryptoJS.AES.decrypt(title, password);
+                    if (decrypted.toString(CryptoJS.enc.Utf8) == "") {
+                        alert("암호를 확인하세요.");
+                    } else {
+                        document.getElementById('enTitle').value = decrypted.toString(CryptoJS.enc.Utf8);
+                        flag3 = false;
+                        flag1 = true;
+                    }
+                } else if (chk2 && flag4) {
+                    var decrypted = CryptoJS.AES.decrypt(source, password);
+                    if (decrypted.toString(CryptoJS.enc.Utf8) == "") {
+                        alert("암호를 확인하세요.");
+                    } else {
+                        document.getElementById('enSource').value = decrypted.toString(CryptoJS.enc.Utf8);
+                        flag4 = false;
+                        flag2 = true;
+                    }
+                } else if (chk1 == false && chk2 == false) {
+                    alert("제목/내용 선택 필수");
+                } else {
+                    alert("복호화 중복 실행 불가");
+                }
+            })
+        });
+    </script>
+
+
+    {{ template "_head" }}
+</body>
+
+</html>

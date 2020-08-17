@@ -65,7 +65,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//http.PostForm 은 form 데이터를 만들어 보낼 때 사용 한다
-	resp, err := http.PostForm("http://localhost:8001/api/user/login", url.Values{"name": {""}, "email": {email}, "password": {password}})
+	resp, err := http.PostForm("http://localhost:9002/api/user/login", url.Values{"name": {""}, "email": {email}, "password": {password}})
 
 	respBody, err := ioutil.ReadAll(resp.Body)
 	if err == nil {

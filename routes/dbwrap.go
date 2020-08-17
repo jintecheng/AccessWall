@@ -5,9 +5,9 @@ import (
 	"log"
 	"strings"
 
-	"github.com/mongodb/mongo-go-driver/bson"
-	"github.com/mongodb/mongo-go-driver/mongo"
-	"github.com/mongodb/mongo-go-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type FileStruct struct {
@@ -22,7 +22,8 @@ type FileFindStruct struct {
 }
 
 func connDB() (*mongo.Client, error) {
-	client, err := mongo.Connect(context.TODO(), "mongodb://"+dbIp+":"+dbPort)
+	clientOptions := options.Client().ApplyURI("mongodb://" + dbIp + ":" + dbPort)
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {
 		log.Fatal(err)

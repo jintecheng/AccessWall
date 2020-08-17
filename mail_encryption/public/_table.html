@@ -1,0 +1,37 @@
+{{define "_table"}}
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="table-layout:fixed">
+        <colgroup>
+            <col width="57px" />
+            <col width="20%" />
+            <col width="*" />
+            <col width="15%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th style="text-align: center;">선택</th>
+                <th>{{.Who}}</th>
+                <th>제목</th>
+                <th>날짜</th>
+            </tr>
+        </thead>
+        {{$num := .Num}}
+        <tbody>
+            {{range .Todos}} {{if .Done}}
+            <tr>
+                <td class="action" style="text-align: center;"><input type="checkbox" /></td>
+                <!-- <td class="action"><i class="fa fa-star-o"></i></td> -->
+                <td class="name" style="text-overflow:ellipsis; overflow:hidden; white-space:nowrap;"> <a href="#" onclick="page_move('{{.Sender}}')"> {{.Sender}}</a></td>
+                <td class="done" style="text-overflow:ellipsis; overflow:hidden; white-space:nowrap;"><a id="title1" name="title1" href="/mailRead?uid={{.Uid}}&num={{$num}}">{{.Title}}</a></td>
+                <!-- <td class="done1"><a>{{.Uid}}</a></td> -->
+                <td class="time" style="font-size: 15px;">{{.Date}}</td>
+
+                {{else}}
+                <!--<li>{{.Title}}</li> -->
+            </tr>
+            {{end}}{{end}}
+        </tbody>
+    </table>
+</div>
+
+{{end}}

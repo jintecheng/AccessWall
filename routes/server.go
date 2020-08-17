@@ -45,5 +45,5 @@ func Server() {
 	n.Use(sessions.Sessions(sessionKey, store))
 	n.Use(LoginRequired("/login", "/auth", "/signup", "/hqblogin", "/register"))
 	n.UseHandler(r)
-	n.Run(":8000")
+	n.Run(":9000")
 }
