@@ -31,21 +31,12 @@ func mailPreset(w http.ResponseWriter, r *http.Request) {
 		b := []byte(mailAdd + ";")
 		mailservers = append(mailservers, b...)
 	}
-	//	_, v1 := AllSessions(w, r)
-	//c, ok := v1.(*[]byte)
-	//	eid := fmt.Sprintf("%v", v1)
-	//mailservers = append(mailservers, **c)
-	//fmt.Print(mailservers)
 
 	if r.Body == nil {
 		http.Error(w, "Please send a request body", 400)
 		return
 	}
 
-	//	b, _ := ioutil.ReadAll(r.Body)
-	//s := string(b)
-
-	//fmt.Println("받은 검색 내용: ", s)
 	fmt.Println("mailservers: ", mailservers)
 	w.Write(mailservers)
 }
