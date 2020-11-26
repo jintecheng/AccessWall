@@ -15,8 +15,6 @@ func mailboxPointer(num string, mailadd string) string {
 	var arr []string
 	n, _ := strconv.Atoi(num)
 
-	//goDotEnvVariable(mailPlatform)
-
 	mailboxes = goDotEnvVariable(mailPlatform)
 	arr = strings.Split(mailboxes, ";")
 
@@ -35,7 +33,6 @@ func sent(w http.ResponseWriter, r *http.Request) {
 	v, v1 := AllSessions(w, r)
 	id := fmt.Sprintf("%v", v)
 	mailadd := fmt.Sprintf("%v", v1)
-	//	fmt.Println(":::::::", mailadd)
 	if mailadd != "<nil>" && mailadd != "" && mailadd != "[]" {
 		t.Execute(w, imapPage(id, mailadd, "2"))
 	} else {
@@ -52,7 +49,6 @@ func spam(w http.ResponseWriter, r *http.Request) {
 	v, v1 := AllSessions(w, r)
 	id := fmt.Sprintf("%v", v)
 	mailadd := fmt.Sprintf("%v", v1)
-	//	fmt.Println(":::::::", mailadd)
 	if mailadd != "<nil>" && mailadd != "" && mailadd != "[]" {
 		t.Execute(w, imapPage(id, mailadd, "4"))
 	} else {
@@ -69,7 +65,6 @@ func draft(w http.ResponseWriter, r *http.Request) {
 	v, v1 := AllSessions(w, r)
 	id := fmt.Sprintf("%v", v)
 	mailadd := fmt.Sprintf("%v", v1)
-	//fmt.Println(":::::::", mailadd)
 	if mailadd != "<nil>" && mailadd != "" && mailadd != "[]" {
 		t.Execute(w, imapPage(id, mailadd, "3"))
 	} else {
@@ -86,7 +81,6 @@ func trash(w http.ResponseWriter, r *http.Request) {
 	v, v1 := AllSessions(w, r)
 	id := fmt.Sprintf("%v", v)
 	mailadd := fmt.Sprintf("%v", v1)
-	//fmt.Println(":::::::", mailadd)
 	if mailadd != "<nil>" && mailadd != "" && mailadd != "[]" {
 		t.Execute(w, imapPage(id, mailadd, "5"))
 	} else {
