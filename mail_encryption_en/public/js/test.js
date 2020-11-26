@@ -457,7 +457,6 @@ function post(URL, PARAMS) {
   }
   document.body.appendChild(temp);
   temp.submit();
-  //return temp;
 }
 
 //메일 목록에서 보낸 사람 클릭 시 메일쓰기로 이동
@@ -468,7 +467,6 @@ function page_move(s_page) {
 }
 
 //메일 보내기
-//const write = () =>
 function write() {
   const to = document.getElementById("writeTo").value;
   // var cc = document.getElementById("write_cc").value;
