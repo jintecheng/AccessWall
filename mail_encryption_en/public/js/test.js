@@ -176,7 +176,6 @@ window.onload = function () {
   if (pop3Btn) {
     pop3Btn.addEventListener("click", pop3Func, false);
   }
-
 };
 
 function findCancelFunc() {
