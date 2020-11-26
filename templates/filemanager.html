@@ -1,5 +1,5 @@
 {{define "filemanager"}}
-<h3>Directory : {{.PathName}} </h3>
+<h3 class="mt-3">Directory : {{.PathName}} </h3>
 <div >
     <div class="topnav">
         <button class="menubtn" id="btn_delete" >Delete</button>
@@ -8,12 +8,12 @@
         <button class="meunbtn" id="btn_copyurl">Copy url</button>
         <button class="meunbtn" id="btn_logout">Logout</button>
     </div>
-    <div id="div_cdir" style="display: none">
+    <div id="div_cdir" style="display: none" class="m-2">
         <input id="input_makedir" type="text" name="dirname" placeholder="folder name"/>
-        <button id="btn_makedir">Make</button>
+        <button id="btn_makedir" class=" btn-md btn-outline-dark">Make</button>
     </div>
-    <fieldset>
-    <ul class="filelist">
+    <fieldset class="card-body border">
+    <ul class="filelist pl-1">
     {{range .Files}}
         {{if .Dir}}
         <div>
@@ -31,7 +31,7 @@
     </ul>
     </fieldset>
 </div>
-<h4>Files permission editor</h4>
+<h4 class="mt-3">Files permission editor</h4>
 <fieldset>
 <div class="div_editfile">
     <form action="/filesperm" method="POST" id="id_filesperm">
@@ -44,7 +44,7 @@
             <textarea class="txt_editclass" id="it_emails" name="edit_emails" rows="7" ></textarea>
         </div>
         <div>
-            <input type="submit" value="권한 수정">
+            <input type="submit" class="btn btn-primary" value="Accept">
         </div>
     </form>
 </div>
@@ -145,6 +145,13 @@
         window.location.href="/logout";
     });
 
+    // upload file 라벨 텍스트 변경
+    $('#upload_files').on('change',function(e){
+	//get the file name
+        var fileName = e.target.files[0].name;
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName); 
+    })
 </script>
 <style>
     .topnav {

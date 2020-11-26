@@ -6,21 +6,37 @@
         <link type="text/css" href="static/css/starter-template.css" rel="stylesheet">
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
-    <body>
-        <div class="container">
-            <p class="class_header">Sign up</p>
+    <body style="background-color:#4e73df;">
+     <div class="cotainer p-4">
+       <div class="row justify-content-center">
+         <div class="col-sm-9 col-md-7 col-lg-6">
+       	 <div class="card shadow-lg my-5">
+ 	<p class="class_header card-header font-weight-bold">Sign up</p>
+	<div class="text-center card-body p-5">
             <form id="frm_register" method="POST" action="/register">
-                <label>Username:</label>
-                <input type="text" name="reg_user" id="input_username"><br/>
-                <label>email:</label>
-                <input type="text" name="reg_email" id="input_email"><br/>
-                <label>Password:</label>
-                <input type="password" name="password" id="input_passwdf"><br/>
-                <label>Check password:</label>
-                <input type="password" id="input_passwds"><br/>
-                <input type="submit" value="Register">
+		    <div class="form-group row p-lg-2">
+                <label class="col-md-4 col-form-label text-md-right text-left">Username:</label>
+                <input type="text" name="reg_user" id="input_username" class="form-control col-md-6"><br/>
+		    </div>
+		    <div class="form-group row p-lg-2">
+                <label class="col-md-4 col-form-label text-md-right text-left">email:</label>
+                <input type="text" name="reg_email" id="input_email" class="form-control col-md-6"><br/>
+		</div>
+		    <div class="form-group row p-lg-2">
+                <label class="col-md-4 col-form-label text-md-right text-left">Password:</label>
+                <input type="password" name="password" id="input_passwdf" class="form-control col-md-6"><br/>
+		    </div>
+		    <div class="form-group row p-lg-2">
+                <label class="col-md-4 col-form-label text-md-right text-left">Check password:</label>
+                <input type="password" id="input_passwds" class="form-control col-md-6"><br/>
+		    </div>
+                <input type="submit" value="Register" class="btn btn-primary btn-outline-light border text mt-3">
             </form>
         </div>
+	 </div>
+	 </div>
+       </div>
+     </div>
         <script type="text/javascript">
         $("#frm_register").submit(function(){
             var username = $("#input_username").val();

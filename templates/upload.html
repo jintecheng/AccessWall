@@ -1,9 +1,18 @@
 {{define "upload"}}
-<div>
+<div class="row">
     <form method="POST" action="/upload" enctype="multipart/form-data">
-        <fieldset>
-            <input type="file" name="upfile" id="upload_files" multiple="multiple"/>
-            <input type="submit" name="submit" value="Upload"/>
+        <fieldset class="input-group">
+
+	  <div class="input-group-prepend">
+
+            <input type="submit" name="submit" value="Upload" class="input-group-text" />
+
+	   </div>
+	 <div class="custom-file">
+            <input type="file" name="upfile" id="upload_files" multiple="multiple" class="custom-file-input"/>
+	    <label class="custom-file-label" for="upload_files">Choose file</label>
+	 </div>
+
         </fieldset>
     </form>
 </div>

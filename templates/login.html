@@ -5,18 +5,31 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link type="text/css" href="static/css/starter-template.css" rel="stylesheet">
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <p class="frm-header">AccessWall 통합 로그인</p>
+</head>
+<body style="background-color:#4e73df;">
+    <div class="container">
+	<div class="row justify-content-center text-center">
+          <div class="col-xl-5 col-lg-6 col-md-9 ">
+           <div class="card o-hidden border-0 my-5 shadow-lg p-4">
+            <div class="frm-container">
+            <p class="frm-header font-weight-bold card-header">AccessWall Integrated Login</p>
+	    <div class="card-body m-3">
             <form method="POST" action="/login" id="frm_hqblogin">
-                <label>Usernae:</label>
-                <input id="in_email" placeholder="Email" type="text" name="email"></br>
-                <label>Password:</label>
-                <input id="in_password" type="password" name="password"></br>
-                <input type="submit" value="Login">
+		<div class="form-group row">
+                  <label class="col-8 col-sm-4 col-form-label text-md-right text-left">Email:</label>
+                  <input class="form-control col-md-6" id="in_email" placeholder="Email" type="text" name="email"></br>
+		</div>
+		<div class="form-group row">
+                <label class="col-8 col-sm-4 col-form-label text-md-right text-left">Password:</label>
+                <input class="form-control col-md-6" id="in_password" type="password" name="password"></br>
+		</div>
+		<input class="btn btn-primary col-3 col-sm-3" type="submit" value="Login">
             </form>
+	    </div>
         <a href="/signup">AccessWall Sign up</a>
+										</div>
+										<hr>
+										<div class="container">
             <div>
                 <p class="frm-header">Social network Sign in</p>
             </div>
@@ -25,16 +38,25 @@
                     <h3 >Please, Login</h3>
                 </div>
                 <div>
-                    <ul>
-                        <li>
-                            <a href="/auth/login/google">Google</a>
+			<ul class="list-unstyled">
+                        <li class="text-center justify-content-center">
+                            <a href="/auth/login/google" class="btn btn-light btn-inline btn-outline-dark w-75 m-2">Google</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-        /*
+						       </div>
+				     </div>
+		    </div>
+		   
+
+    </div>
+
+
+
+	<script type="text/javascript">
+	/*
         $("#frm_hqblogin").submit(function(){
             var email = $("#in_email").val();
             var password = $("#in_password").val();
