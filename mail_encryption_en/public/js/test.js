@@ -32,18 +32,6 @@ window.onload = function () {
   //Fire it when the page first loads:
   alterClass();
 
-  // const logout = document.getElementById("logout");
-  // if (logout) {
-  //   logout.addEventListener(
-  //     "click",
-  //     function (e) {
-  //       console.log("Logout");
-  //     },
-  //     false
-  //   );
-  //   logout.addEventListener("click", logoutClick, false);
-  // }
-
   // 로그인
   const bnt_login = document.getElementById("bnt_login");
   if (bnt_login) bnt_login.addEventListener("click", loginPost, false);
@@ -983,15 +971,15 @@ function setAdd() {
     mail !== "" &&
     mailPw !== ""
   ) {
-	  if (options.includes(mail) == true){
-		  alert("The same email address already exists.");
-	  } else {
-                  let fm = document.getElementById("setf");
-   		  fm.method = "post";
-		  fm.target = "_self";
-    		  fm.action = "/mailserverInsert";
-		  fm.submit();
-	  }
+    if (options.includes(mail) == true) {
+      alert("The same email address already exists.");
+    } else {
+      let fm = document.getElementById("setf");
+      fm.method = "post";
+      fm.target = "_self";
+      fm.action = "/mailserverInsert";
+      fm.submit();
+    }
   } else {
     alert("Please enter all items.");
   }
@@ -1011,17 +999,17 @@ function setDel() {
   let val = y[x].value;
 
   if (idx == 0) {
-   alert("Default mail cannot be deleted.");
-  }else{
+    alert("Default mail cannot be deleted.");
+  } else {
 
-  // $("select[name='setMailList'] option:selected").remove();
-  // fm.method = "post";
-  // fm.target = "_self";
-  // fm.action = "/loginTest";
-  // fm.submit();
-  post("/mailserverDelete", {
-    mail: val,
-  });
+    // $("select[name='setMailList'] option:selected").remove();
+    // fm.method = "post";
+    // fm.target = "_self";
+    // fm.action = "/loginTest";
+    // fm.submit();
+    post("/mailserverDelete", {
+      mail: val,
+    });
   }
 }
 
