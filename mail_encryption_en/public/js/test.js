@@ -221,15 +221,12 @@ function btnFindFunc() {
     Name: userName,
     Email: userAddress,
   };
-  //console.log(u3)
+
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 201) {
-      //console.log(xhr.responseText);
       alert("Check your email: " + userAddress);
       findCancelFunc();
     } else {
-      //console.error(xhr.responseText);
-      //alert(xhr.responseText);
       var loginAlert = document.querySelectorAll("#loginAlert")
       loginAlert[1].style.display = "block";
       $("#userName").focus();
