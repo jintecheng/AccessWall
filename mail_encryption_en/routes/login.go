@@ -114,18 +114,6 @@ func register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// if name == "" || id == "" || email == "" || password1 == "" || password2 == "" {
-	// 	log.Println("가입 정보를 모두 입력해주세요.")
-	// 	http.Error(w, "Already existed ID.", 400)
-	// 	return
-	// }
-
-	// if password1 != password2 {
-	// 	log.Println("비밀번호가 다릅니다.")
-	// 	http.Error(w, "Already existed ID.", 400)
-	// 	return
-	// }
-
 	password := GeneratePassword(password1)
 	_, err := db.Exec("INSERT INTO member VALUES ($1, $2, $3)", id, password, name)
 	if err != nil {
