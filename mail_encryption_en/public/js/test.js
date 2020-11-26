@@ -253,9 +253,7 @@ function forgotPwFunc() {
 };
 
 function btnFindPwFunc() {
-
   const userAddress = document.getElementById("userAddress2").value;
-
   var queryString = $("#f3").serialize();
 
   $.ajax({
@@ -278,11 +276,8 @@ function btnFindPwFunc() {
 
 function setModalOpen() {
   let value = this.value;
-  //console.log("this.value: " + value);
   $(document).off('focusin.modal');
-
   var queryString = $("#setAccoutFm").serialize();
-  //console.log(queryString);
 
   $.ajax({
     type: 'post',
@@ -316,7 +311,6 @@ function setModalOpen() {
       let span = document.getElementById("mdClose");
       setModal.style.display = "block";
 
-
       // When the user clicks on <span> (x), close the modal
       if (span) {
         span.addEventListener("click", function () {
@@ -334,10 +328,8 @@ function setModalOpen() {
           document.getElementById("setAccPw2").value = "";
         }
       }, false);
-
     }
   });
-
 }
 
 // 비밀번호 변경
