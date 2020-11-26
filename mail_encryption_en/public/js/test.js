@@ -117,7 +117,7 @@ window.onload = function () {
     deleteAccount.addEventListener("click", setModalOpen, false);
   }
 
-  //설정 - 사용자 비밀번호 변경 모달 
+  //설정 - 사용자 비밀번호 변경 모달
   const updatePw = document.getElementById("updatePw");
   if (updatePw) {
     updatePw.addEventListener("click", setModalOpen, false);
@@ -214,18 +214,21 @@ function btnFindFunc() {
 
   const userName = document.getElementById("userName").value;
   const userAddress = document.getElementById("userAddress").value;
+  // let findIdDiv = document.querySelector(".finIdDiv");
 
   let xhr = new XMLHttpRequest();
   let u3 = {
     Name: userName,
     Email: userAddress,
   };
-
+  //console.log(u3)
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 201) {
+      //console.log(xhr.responseText);
       alert("Check your email: " + userAddress);
       findCancelFunc();
     } else {
+      //console.error(xhr.responseText);
       //alert(xhr.responseText);
       var loginAlert = document.querySelectorAll("#loginAlert")
       loginAlert[1].style.display = "block";
@@ -488,7 +491,7 @@ function page_move(s_page) {
 }
 
 //메일 보내기
-//const write = () => 
+//const write = () =>
 function write() {
   const to = document.getElementById("writeTo").value;
   // var cc = document.getElementById("write_cc").value;
@@ -1120,5 +1123,3 @@ function inputCheck() {
   }
   return 1;
 }
-  //});
-  // });
