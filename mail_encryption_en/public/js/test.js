@@ -336,7 +336,6 @@ function setModalOpen() {
 function modalUpdateFunc() {
 
   var queryString = $("#setModalForm").serialize();
-  //console.log(queryString);
 
   $.ajax({
     type: 'post',
@@ -421,8 +420,6 @@ function register() {
 
   var queryString = $("#joinFm").serialize();
   if (inputCheck() != 0) {
-
-    //console.log(queryString);
     $.ajax({
       type: 'post',
       url: '/register',
@@ -440,7 +437,6 @@ function register() {
         }
       },
       success: function (xhr, status) {
-        //console.log("성공");
         location.href = "/login";
       }
     });
