@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html onloadstart="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content=""> {{ template "_head" }}
+
+    <title>Login</title>
+</head>
+
+<body class="bg-gradient-primary">
+    <div id="login_wrapper" class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-9">
+                <div class="card o-hidden border-0 my-5 shadow-lg">
+                    <div class="card-body p-0 ">
+                        <!-- Nested Row within Card Body -->
+                        <div class="pt-5 text-center">
+                            <a href="/login"><img src="img\aw_icon.png" alt="placeholder" width="150px" /></a>
+                        </div>
+                        <div class="p-5 loginDiv">
+                            <!-- Login form -->
+                            <form id="f1" name="f1" class="user">
+                                <div class="form-group ">
+                                    <label for="id">ID</label>
+                                    <input type="text " id="id" name="id" class=" form-control jInput rounded-pill"
+                                        placeholder="ID">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="pw">Password</label>
+                                    <input type="password" class="form-control  jInput rounded-pill" id="pw" name="pw"
+                                        autocomplete="on" placeholder="Password">
+                                </div>
+                                <div class="form-group ">
+                                    <label id="loginAlert">Please check your ID or
+                                        Password.</label>
+                                </div>
+                                <input type="button" id="bnt_login" class="btn btn-primary btn-user btn-block"
+                                    value="Login">
+                            </form>
+                            <hr>
+
+                            <div class="text-center"><br>
+                                <a class="" href="/join">Create an Account!</a> <br>
+                                <button class="small btn btn-link" id="forgotId">Forgot ID</button>or
+                                <button class="small btn btn-link" id="forgotPw"> Password ?</button>
+                            </div>
+                        </div>
+
+                        <!-- Find ID -->
+                        <div class="p-5 finIdDiv" hidden>
+                            <form id="f2" name="f2" class="user">
+                                <div class="form-group ">
+                                    <label for="id">Name</label>
+                                    <input type="text " id="userName" name="userName"
+                                        class=" form-control jInput rounded-pill" placeholder="Name">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="pw">Email Address</label>
+                                    <input type="text" class="form-control  jInput rounded-pill" id="userAddress"
+                                        name="userAddress" placeholder="Email Address">
+                                </div>
+                                <div class="form-group ">
+                                    <label id="loginAlert">Please check your Name or
+                                        Address.</label>
+                                </div>
+                                <input type="button" id="btnFind" class="btn btn-primary btn-user btn-block"
+                                    value="Find ID">
+                            </form>
+                            <hr>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-sm btn-link" id="findCancel">Cancel</button> <br>
+                            </div>
+                        </div>
+
+                        <!-- Find Pw -->
+                        <div class="p-5 finPwDiv" hidden>
+                            <form id="f3" name="f3" class="user">
+                                <div class="form-group ">
+                                    <label for="userName2">Name</label>
+                                    <input type="text" id="userName2" name="userName2"
+                                        class=" form-control jInput rounded-pill" placeholder="Name">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="userAddress2">Email Address</label>
+                                    <input type="text" class="form-control  jInput rounded-pill" id="userAddress2"
+                                        name="userAddress2" placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <label id="loginAlert">Please check your Name or
+                                        Address.</label>
+                                </div>
+                                <input type="button" id="btnPwFind" class="btn btn-primary btn-user btn-block"
+                                    value="Find Password">
+                            </form>
+                            <hr>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-sm btn-link" id="findCancel">Cancel</button> <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script defer src="js/test.js"></script>
+</body>
+
+</html>

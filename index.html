@@ -21,6 +21,7 @@
                 font-size: 3.5rem;
             }
         }
+
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -46,17 +47,17 @@
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid" style="background-color:#4e73df; color:white;">
+    <div class="jumbotron jumbotron-fluid mb-3" style="background-color:#4e73df; color:white;">
                 <!-- <img src="./static/img/aw_icon.png" alt="logo"> -->
         <div class="container">
             <h1 class="display-4">
-                파일 암호화 공유 - AccessWall
+                File Encryption Sharing - AccessWall
             </h1>
-            <p class="lead">파일을 암호화 하고 공유에 대한 권한을 부여 할 수 있는 기능을 제공 합니다.</p>
+            <p class="lead">Provides the function to encrypt files and authorize sharing.</p>
         </div>
     </div>
-    <div class="container">
-        <div>
+    <div class="container card shadow-lg p-4 mb-4">
+        <div class="container">
             {{template "upload"}}
         </div>
         <div>

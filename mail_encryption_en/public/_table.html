@@ -1,0 +1,53 @@
+{{define "_table"}}
+<div class="table-responsive" id="table-responsive">
+  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="table-layout: fixed;"
+    id="products">
+    <colgroup>
+      <col width="63px" />
+      <col width="20%" />
+      <col width="*" />
+      <col width="15%" />
+    </colgroup>
+    <thead>
+      <input type="hidden" id="menuNum" value="{{.Num}}" />
+      <tr>
+        <th style="text-align: center; font-size: small;">Select</th>
+        <th>{{.Who}}</th>
+        <th>Title</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    {{$num := .Num}}
+    <tbody class="tb">
+      {{range .Todos}} {{if .Done}}
+      <tr id="tr{{.Uid}}">
+        <td class="action" style="text-align: center;" id="td">
+          <input type="checkbox" id="mailChk" name="mailChk" value="{{.Uid}}" />
+        </td>
+        <!-- <td class="action"><i class="fa fa-star-o"></i></td> -->
+        <td class="name" style="
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          " id="td">
+          <a href="#" onclick="page_move('{{.Sender}}')"> {{.Sender}}</a>
+        </td>
+        <td class="done" style="
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          " id="td">
+          <a id="title1" name="title1" href="/mailRead?uid={{.Uid}}&num={{$num}}">{{.Title}}</a>
+        </td>
+        <!-- <td class="done1"><a>{{.Uid}}</a></td> -->
+        <td class="time td-la" style="font-size: 15px;" id="td">{{.Date}}</td>
+
+        {{else}}
+        <!--<li>{{.Title}}</li> -->
+      </tr>
+      {{end}}{{end}}
+    </tbody>
+  </table>
+</div>
+
+{{end}}

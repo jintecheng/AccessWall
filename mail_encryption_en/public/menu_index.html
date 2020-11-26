@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<head>
+    {{ template "_head" }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+</head>
+
+
+<body id="page-top">
+
+    <div id="wrapper">
+        {{ template "_menu" }}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                {{ template "_header" }}
+                <!-- Begin Page Content -->
+                <div class="container-fluid btn-">
+                    <!-- 
+                 
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. 
+                        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">
+                            official DataTables documentation</a>.</p> -->
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <button class="btn btn-info btn-circle btn-sm" id="mailRefresh">
+                                <i class="fas fa-refresh"></i>
+                            </button>
+                            <!--<a href="#" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </a> -->
+                            <button class="btn btn-danger btn-circle btn-sm" id="mailDelete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            {{ template "_table" .}}
+                        </div>
+
+                        <div class="page-s">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center" id="pagination">
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white ">
+                <div class="container my-auto ">
+                    <div class="copyright text-center my-auto ">
+                        <span>Copyright &copy; Jintecheng 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded " href="#page-top ">
+        <i class="fas fa-angle-up "></i>
+    </a>
+    {{ template "_headjs" }}
+
+</body>
+
+</html>
