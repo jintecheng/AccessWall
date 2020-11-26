@@ -264,14 +264,6 @@ function btnFindPwFunc() {
     data: queryString,
     dataType: 'html',
     error: function (xhr, status, error) {
-      // if (xhr.status === 400) {
-      //   var loginAlert = document.querySelectorAll("#loginAlert")
-      //   loginAlert[2].style.display = "block";
-      // } else {
-      //   //alert(xhr.status + " Please retry: " + xhr.responseText)
-      //   var loginAlert = document.querySelectorAll("#loginAlert")
-      //   loginAlert[2].style.display = "block";
-      // }
       var loginAlert = document.querySelectorAll("#loginAlert")
       loginAlert[2].style.display = "block";
       $("#userName2").focus();
