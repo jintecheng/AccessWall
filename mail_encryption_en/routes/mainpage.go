@@ -67,8 +67,6 @@ func imapPage(id string, s string, num string) TodoPageData {
 	if err := c.Login(mailadd, accountinfo.mail_passwd); err != nil {
 		fmt.Println("로그인 에러")
 		log.Panic(err)
-		//로그인 에러
-		//2020/06/10 10:21:48 Sorry, IMAP UserAuth Server Is Checking..Please, Try later.
 	}
 	log.Println("Logged in")
 
@@ -97,14 +95,11 @@ func imapPage(id string, s string, num string) TodoPageData {
 	}
 	log.Println("Flags for INBOX:", mbox.Flags)
 
-	// Get the last 4 messages
+	// Get the last 50 messages
 	from := uint32(1)
 	tonum := mbox.Messages // 메일 총개수
 	if mbox.Messages > 50 {
-		// We're using unsigned integers here, only substract if the result is > 0
 		from = mbox.Messages - 49
-	}
-	//	fmt.Println("박스 개수: ", mbox.Messages)
 
 	seqset := new(imap.SeqSet)
 	seqset.AddRange(from, tonum)
@@ -117,8 +112,6 @@ func imapPage(id string, s string, num string) TodoPageData {
 	go func() {
 		done <- c.Fetch(seqset, items, messages)
 	}()
-
-	//log.Println("Last 4 messages:")
 
 	data := TodoPageData{
 		Todos: make([]Todo, 55),
@@ -143,9 +136,8 @@ func imapPage(id string, s string, num string) TodoPageData {
 		header := mr.Header
 
 		if date, err := header.Date(); err == nil {
-			//fmt.Println("date: ", date.UTC())
 			t := date.UTC()
-			t = t.In(time.FixedZone("SST", 8*60*60)) // 한국시간으로 바꾸기
+			t = t.In(time.FixedZone("SST", 8*60*60)) // Singapol Region
 			data.Todos[i].Date = (t.Format("2006-01-02 15:04:05"))
 
 		}
@@ -158,8 +150,7 @@ func imapPage(id string, s string, num string) TodoPageData {
 				}
 			}
 		} else {
-			if to, err := header.AddressList("To"); err == nil && len(to) != 0 { // to가 존재하지 않으면 오류 발생 - 제외
-				//runtime error: index out of range [0] with length 0
+			if to, err := header.AddressList("To"); err == nil && len(to) != 0 { 
 				data.Todos[i].Sender = to[0].Address
 			} else {
 				data.Todos[i].Sender = ""
@@ -224,22 +215,11 @@ func mailList(w http.ResponseWriter, r *http.Request) {
 		b := []byte(indivserver + ";")
 		mailservers = append(mailservers, b...)
 	}
-	//	_, v1 := AllSessions(w, r)
-	//c, ok := v1.(*[]byte)
-	//	eid := fmt.Sprintf("%v", v1)
-	//mailservers = append(mailservers, **c)
-	//fmt.Print(mailservers)
 
 	if r.Body == nil {
 		http.Error(w, "Please send a request body", 400)
 		return
 	}
-
-	//	b, _ := ioutil.ReadAll(r.Body)
-
-	//s := string(b)
-
-	//fmt.Println("받은 검색 내용: ", s)
 
 	w.Write(mailservers)
 }
@@ -250,8 +230,6 @@ func mailChange(w http.ResponseWriter, r *http.Request) {
 	url, _ := r.URL.Query()["url"]
 	url1 := strings.Join(url, "")
 	url1 = "/" + url1
-	//fmt.Println("url1: ", url1)
-	//fmt.Println(email[0], ok)
 	session := GetSession(w, r)
 
 	session.Values["eId"] = email[0]
@@ -261,7 +239,4 @@ func mailChange(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("in")
 		w.Write([]byte("1"))
 	}
-
-	//fmt.Println("1: ", url)
-	//w.Write([]byte("1"))
 }
