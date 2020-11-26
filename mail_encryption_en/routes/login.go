@@ -35,7 +35,6 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	session.Values["id"] = nil
 	session.Values["eId"] = nil
 	session.Save(r, w)
-	//fmt.Println(":::::::", session.Values["id"])
 	http.Redirect(w, r, "/login", http.StatusFound)
 }
 
