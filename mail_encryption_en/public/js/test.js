@@ -177,24 +177,6 @@ window.onload = function () {
     pop3Btn.addEventListener("click", pop3Func, false);
   }
 
-  // fetch('menuEmailList').then(function(response) {
-  //     response.text().then(function(text) {
-  //         console.log(text);
-  //         var items = text.split(',');
-  //         console.log(items);
-  //         var i = 0;
-  //         var tags = '';
-  //         while (i < items.length) {
-  //             var item = items[i];
-  //             //<option value="gmail">a123@gmail.com</option>
-  //             var tag = '<option>' + item + '</option>'
-  //             tags += tag;
-  //             i += 1;
-  //         }
-
-  //         document.querySelector("#mailList").innerHTML = tags;
-  //     })
-  // });
 };
 
 function findCancelFunc() {
