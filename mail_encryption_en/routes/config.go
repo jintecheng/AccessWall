@@ -89,7 +89,6 @@ func getPresetInfo(db *sql.DB, mailadd string) accountInfo {
 	db.QueryRow("SELECT imap_port FROM mail_preset WHERE mail_add=$1", mailadd).Scan(&accountinfo.imap_port)
 	db.QueryRow("SELECT pop3_add FROM mail_preset WHERE mail_add=$1", mailadd).Scan(&accountinfo.pop3_add)
 	db.QueryRow("SELECT pop3_port FROM mail_preset WHERE mail_add=$1", mailadd).Scan(&accountinfo.pop3_port)
-	//db.QueryRow("SELECT convert_from(decrypt(decode(mail_passwd, 'hex'), 'epjtwihnsasdc', 'aes'),'utf-8') from mail_info WHERE mail=$1", mailadd).Scan(&accountinfo.mail_passwd)
 
 	return accountinfo
 }
