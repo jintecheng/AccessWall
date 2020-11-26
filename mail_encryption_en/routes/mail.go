@@ -59,9 +59,6 @@ type TodoPageData struct {
 
 func compose(w http.ResponseWriter, r *http.Request) {
 	LoggedIn(w, r, "/login")
-	//_, v1 := AllSessions(w, r)
-	//mailadd := fmt.Sprintf("%v", v1)
-	//fmt.Println(mailadd)
 
 	bo := r.FormValue("bo")
 	var reply Mail2
@@ -88,7 +85,6 @@ func mailRead(w http.ResponseWriter, r *http.Request) {
 	uid1, ok := r.URL.Query()["uid"]
 	num, ok := r.URL.Query()["num"] //페이지 번호
 
-	fmt.Println(uid1[0], ok)
 	uid, err := strconv.Atoi(uid1[0])
 
 	m := imapRead(id, mailadd, uid, num[0])
@@ -112,10 +108,6 @@ func imapRead(id string, s string, uid int, num string) Mail2 {
 
 	mailadd := s
 
-	//[1 : len(s)-1]
-	//log.Println(mailadd)
-
-	// Connect to db
 	db := connectDB()
 	defer disconnectDB(db)
 	p := mailboxPointer(num, mailadd)
@@ -148,7 +140,6 @@ func imapRead(id string, s string, uid int, num string) Mail2 {
 
 	fmt.Println("메일 개수: ", mbox.Messages)
 
-	// Get the last message
 	if uid == 0 {
 		log.Panic("No message in mailbox")
 	}
@@ -156,7 +147,6 @@ func imapRead(id string, s string, uid int, num string) Mail2 {
 
 	seqSet.AddNum((uint32)(uid))
 
-	// Get the whole message body
 	var section imap.BodySectionName
 	items := []imap.FetchItem{section.FetchItem()}
 
@@ -189,7 +179,7 @@ func imapRead(id string, s string, uid int, num string) Mail2 {
 	header := mr.Header
 	if date, err := header.Date(); err == nil {
 		t := date.UTC()
-		t = t.In(time.FixedZone("SST", 8*60*60)) // 한국시간으로 바꾸기
+		t = t.In(time.FixedZone("SST", 8*60*60)) // Singapol region
 		m2.Mdate = (t.Format("2006-01-02 15:04:05"))
 	}
 
