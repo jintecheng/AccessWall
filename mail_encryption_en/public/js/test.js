@@ -117,7 +117,7 @@ window.onload = function () {
     deleteAccount.addEventListener("click", setModalOpen, false);
   }
 
-  //설정 - 사용자 비밀번호 변경 모달 
+  //설정 - 사용자 비밀번호 변경 모달
   const updatePw = document.getElementById("updatePw");
   if (updatePw) {
     updatePw.addEventListener("click", setModalOpen, false);
@@ -491,7 +491,7 @@ function page_move(s_page) {
 }
 
 //메일 보내기
-//const write = () => 
+//const write = () =>
 function write() {
   const to = document.getElementById("writeTo").value;
   // var cc = document.getElementById("write_cc").value;
@@ -1123,5 +1123,3 @@ function inputCheck() {
   }
   return 1;
 }
-  //});
-  // });
