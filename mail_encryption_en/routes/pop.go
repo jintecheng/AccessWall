@@ -32,7 +32,7 @@ type popMail struct {
 func pop(w http.ResponseWriter, r *http.Request) {
 	addr := "pop.naver.com:995"
 
-	client, err := pop3.Dial(addr) //pop3.go의 net.Dial -> tls.Dial (,nil)
+	client, err := pop3.Dial(addr)
 
 	if err != nil {
 		log.Printf("Error1: %v\n", err)
@@ -59,50 +59,6 @@ func pop(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("Count: %d, Size: %d\n", count, size)
-
-	// if count, size, err = client.List(2); err != nil {
-	// 	log.Printf("Error: %v\n", err)
-	// 	return
-	// }
-	// log.Printf("Number: %d, Size: %d\n", count, size)
-
-	//var mis []pop3.MessageInfo
-
-	// if mis, err = client.ListAll(); err != nil {
-	// 	log.Printf("Error: %v\n", err)
-	// 	return
-	// }
-
-	// for _, mi := range mis {
-	// 	log.Printf("Number: %d, Size: %d, Uid: %q\n", mi.Number, mi.Size, mi.Uid)
-	// }
-
-	// var number int
-	// var uid string
-
-	// if number, uid, err = client.Uidl(2); err != nil {
-	// 	log.Printf("Error: %v\n", err)
-	// 	return
-	// }
-
-	// var bufs1 bytes.Buffer
-	// wr := transform.NewWriter(&bufs1, korean.EUCKR.NewEncoder())
-	// wr.Write([]byte(uid))
-	// wr.Close()
-
-	// log.Printf("Number: %d, Uid: %s\n \n", number, bufs1.String())
-
-	// if mis, err = client.UidlAll(); err != nil {
-	// 	log.Printf("Error: %v\n", err)
-	// 	return
-	// }
-
-	// i := 0
-
-	// for _, mi := range mis {
-	// 	i++
-	// 	log.Printf("Number: %d, Uid: %s\n", mi.Number, mi.Uid)
-	// }
 
 	var content string
 	var data1 []popMail
@@ -132,12 +88,10 @@ func pop(w http.ResponseWriter, r *http.Request) {
 				fmt.Println("msg.Header.Get(Content-Type): ", msg.Header.Get("Content-Type"))
 				fmt.Println("msg.Header.Get(Content-Transfer-encoding): ", msg.Header.Get("Content-Transfer-encoding"))
 
-				//multipart
 				ss := multipartFunc(w, content)
 				if err != nil {
 					log.Fatal(err)
 				}
-				//fmt.Println(ss)
 				fmt.Println("\n--------2end--------------")
 
 				data := popMail{
@@ -171,64 +125,6 @@ func pop(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-
-	//log.Println("Content:\n%s\n", content)
-
-	// r1 := strings.NewReader(content)
-	// m, err := mail.ReadMessage(r1)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// header := m.Header
-
-	// date, _ := header.Date()
-	// fmt.Println("DATE1: ", date)
-	// fmt.Println("DATE2: ", header.Get("Date"))
-	// fmt.Println("From: ", header.Get("From"))
-	// fmt.Println("To: ", header.Get("To"))
-	// //fmt.Println("Subject: ", header.Get("subject"))
-	// fmt.Println("Content-Type: ", header.Get("Content-Type"))
-
-	// subject1 := header.Get("subject")
-	// dec := new(mime.WordDecoder)
-	// subject, _ := dec.DecodeHeader(subject1)
-	// fmt.Println("Subject: ", subject)
-	// from2, _ := dec.DecodeHeader(header.Get("From"))
-	// fmt.Println("From2: ", from2)
-
-	// fmt.Println("\n--------body--------------")
-	// //body, err := ioutil.ReadAll(m.Body)
-	// //fmt.Println(string(body))
-	// //fmt.Println("\n--------2body--------------")
-
-	// msg, err := mail.ReadMessage(bytes.NewBufferString(content))
-	// if err != nil {
-	// 	log.Fatal("Cannot parse myMessage.")
-	// }
-
-	// fmt.Println("\n--------2body--------------")
-	// date1, _ := msg.Header.Date()
-	// fmt.Println("1DATE: ", date1.Format("2006-01-02 15:04:05"))
-	// fmt.Println("1To: ", msg.Header.Get("To"))
-	// fmt.Println("1From: ", decodeRFC2047(msg.Header.Get("From")))
-	// fmt.Println("1Subject: ", decodeRFC2047(msg.Header.Get("Subject")))
-	// fmt.Println("msg.Header.Get(Content-Type): ", msg.Header.Get("Content-Type"))
-	// fmt.Println("msg.Header.Get(Content-Transfer-encoding): ", msg.Header.Get("Content-Transfer-encoding"))
-
-	// //multipart
-	// ss := multipartFunc(w, content)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// fmt.Println(ss)
-	// fmt.Println("\n--------2end--------------")
-
-	// if err = client.Dele(6); err != nil {
-	// 	log.Printf("Error: %v\n", err)
-	// 	return
-	// }
-
 	if err = client.Noop(); err != nil {
 		log.Printf("Error: %v\n", err)
 		return
@@ -239,23 +135,7 @@ func pop(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// data := popMail{
-	// 	Title:   decodeRFC2047(msg.Header.Get("Subject")),
-	// 	From:    decodeRFC2047(msg.Header.Get("From")),
-	// 	To:      msg.Header.Get("To"),
-	// 	Date:    date1.Format("2006-01-02 15:04:05"),
-	// 	Content: ss,
-	// }
-
 	log.Printf("완료")
-	//log.Println("합쳤냐?", data1)
-	//	file, _ := json.MarshalIndent(data, "", " ")
-
-	//	err1 := ioutil.WriteFile("public/mailboxes/in3166@naver.com/inbox/o.json", file, 0777)
-
-	//if err1 != nil {
-	//	log.Println("저장 오류", err1)
-	//}
 
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(200)
@@ -271,7 +151,7 @@ func pop(w http.ResponseWriter, r *http.Request) {
 func multipartFunc(w http.ResponseWriter, content string) string {
 
 	fmt.Println("@@multipart In!")
-	//fmt.Println("content in Func: \n", content)
+
 	log.Println("1")
 	strings.ReplaceAll(content, "\n", "\r\n")
 	msg, err := mail.ReadMessage(bytes.NewBufferString(content))
@@ -329,9 +209,6 @@ func multipartFunc(w http.ResponseWriter, content string) string {
 				break
 			}
 
-			//fmt.Println("사전 검사 본문: ", string(slurp))
-			//fmt.Println("사전 검사 Encoding: ", p.Header.Get("Content-Transfer-Encoding"))
-
 			if strings.Contains(strings.ToUpper(p.Header.Get("Content-Transfer-Encoding")), "BASE64") {
 				uDec, _ = base64.StdEncoding.DecodeString(string(slurp))
 			} else if strings.Contains(strings.ToUpper(p.Header.Get("Content-Transfer-Encoding")), "QUOTED-PRINTABLE") {
@@ -340,8 +217,6 @@ func multipartFunc(w http.ResponseWriter, content string) string {
 				uDec = []byte(string(slurp))
 			}
 
-			//fmt.Printf("%s %v\n", b, err)
-			//fmt.Printf("^^결과: Content-type: %s / Content-Transfer-encoding:  \n --------\n %s\n", p.Header.Get("Content-Type"), uDec)
 		}
 	} else {
 		body, _ := ioutil.ReadAll(msg.Body)
