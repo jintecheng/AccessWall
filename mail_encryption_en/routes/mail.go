@@ -215,11 +215,9 @@ func imapRead(id string, s string, uid int, num string) Mail2 {
 		}
 		switch h := p.Header.(type) {
 		case *mail.InlineHeader:
-			// This is the message's text (can be plain-text or HTML)
 			b, _ := ioutil.ReadAll(p.Body)
-			if string(b) != "" { //다음 내용이 빈칸인 경우 존재 제외
+			if string(b) != "" {
 				emailbody = string(b)
-				//fmt.Println("imapread 내용: ", emailbody)
 			}
 		case *mail.AttachmentHeader:
 			// This is an attachment
@@ -303,11 +301,8 @@ func mailDelete(w http.ResponseWriter, r *http.Request) {
 	seqset := new(imap.SeqSet)
 
 	for i := 0; i < len; i++ {
-		fmt.Println("?", getMail.Mail[i])
 		num6, _ := strconv.ParseUint(getMail.Mail[i], 10, 32)
-		fmt.Println("잉?", num6)
 		num := uint32(num6)
-		fmt.Println("머?", num)
 		seqset.AddNum(num)
 
 		// First mark the message as deleted
@@ -324,12 +319,6 @@ func mailDelete(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Println("Checked message has been deleted")
-	//http.Redirect(w, r, "/", http.StatusMovedPermanently)
-	// t, err := template.ParseFiles("public/join.html", "public/_head.html", "public/_headjs.html")
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// t.Execute(w, nil)
 }
 
 func write(w http.ResponseWriter, r *http.Request) {
@@ -348,14 +337,7 @@ func write(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// fmt.Println("받는 사람: ", u.Jto)
-	// fmt.Println("참조: ", u.Jcc)
-	// fmt.Println("제목: ", u.Jtitle)
-	// fmt.Println("내용: ", u.Jinput)
-
-	//defer http.Redirect(w, r, "/index", http.StatusMovedPermanently) // 페이지 이동 안됨
-
-	// DB 연동		//enable
+	// DB 연동
 	db := connectDB()
 	defer disconnectDB(db)
 
@@ -376,31 +358,14 @@ func write(w http.ResponseWriter, r *http.Request) {
 		receivers = append(receivers, to)
 	}
 
-	// to = u.Jto
-	// fmt.Println("receivers: ", receivers)
-	// receivers = append(receivers, to)
-
 	auth := smtp.PlainAuth("", mailadd, accountinfo.mail_passwd, accountinfo.smtp_add)
 
-	//메일 내용
-	/*
-		headerSubject := "Subject: " + u.Jtitle + "\n"
-
-		headerBlank := "From" + sender + "\r\n"
-			body := u.Jinput + "\r\n"
-
-			fmt.Println("------------")
-	*/
-	//date := time.Now().Format("2006-01-02 15:04:05")
 	headers := make(map[string]string)
 	headers["From"] = mailadd
 	headers["To"] = u.Jto
 	headers["Subject"] = u.Jtitle
 	headers["Content-Type"] = "text/plain; charset=\"utf-8\""
 
-	//headers["Date"] = date
-	// headers["Time"] = date
-	// fmt.Println("시간: ", date)
 	message := ""
 	for k, v := range headers {
 		message += fmt.Sprintf("%s: %s\r\n", k, v)
@@ -408,13 +373,8 @@ func write(w http.ResponseWriter, r *http.Request) {
 	message += "\r\n" + u.Jinput + "\r\n"
 
 	msg := []byte(message)
-
 	addr = accountinfo.smtp_add + ":" + accountinfo.smtp_port
-
-	//fmt.Println("accountinfo.mail_passwd: ", accountinfo.mail_passwd, "mailadd: ", mailadd, " accountinfo.smtp_add: ", accountinfo.smtp_add, "accountinfo.smtp_port: ", accountinfo.smtp_port)
-	//fmt.Println("7 addr: ", addr, "auth: ", auth, "mailadd: ", mailadd, "receivers: ", receivers, "msg: ", msg)
 	err1 := smtp.SendMail(addr, auth, mailadd, receivers, msg)
-	//[negroni] PANIC: read tcp 192.168.1.49:3815->211.231.108.14:465: wsarecv: An existing connection was forcibly closed by the remote host.
 
 	if err1 != nil {
 		panic(err1)
