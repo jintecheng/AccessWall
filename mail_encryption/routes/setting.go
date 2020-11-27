@@ -196,6 +196,52 @@ func defaultmailChange(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/set", http.StatusFound)
 }
 
+func deleteAccountPasswordCheck(w http.ResponseWriter, r *http.Request) {
+
+	session := GetSession(w, r)
+	id := session.Values["id"]
+	accountPassword := r.FormValue("accountPassword")
+	var hashedPassword string
+
+	db := connectDB()
+	defer disconnectDB(db)
+
+	err := db.QueryRow("SELECT password FROM member WHERE id=$1", id).Scan(&hashedPassword)
+
+	if err != nil {
+		//
+	}
+
+	if EqualPassword(hashedPassword, accountPassword) == true {
+		//
+	} else {
+		http.Error(w, "Please check your password", 400)
+	}
+
+}
+
+func changeAccountPasswordCheck(w http.ResponseWriter, r *http.Request) {
+
+	session := GetSession(w, r)
+	id := session.Values["id"]
+	accountPassword := r.FormValue("accountPassword")
+	var hashedPassword string
+
+	db := connectDB()
+	defer disconnectDB(db)
+
+	err := db.QueryRow("SELECT password FROM member WHERE id=$1", id).Scan(&hashedPassword)
+
+	if err != nil {
+	}
+
+	if EqualPassword(hashedPassword, accountPassword) == true {
+		w.WriteHeader(200)
+	} else {
+		http.Error(w, "Please check your password", 400)
+	}
+}
+
 func changeAccountPassword(w http.ResponseWriter, r *http.Request) {
 
 	password1 := r.FormValue("setAccPw")
