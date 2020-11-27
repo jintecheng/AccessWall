@@ -129,7 +129,6 @@
                         flag4 = true;
                         var encrypted1 = CryptoJS.AES.encrypt(source, password);
                         var encrypted2 = CryptoJS.AES.encrypt(title, password);
-                        // console.log(encrypted.toString())
                         document.getElementById('enSource').value = encrypted1;
                         document.getElementById('enTitle').value = encrypted2;
                     }
@@ -141,7 +140,6 @@
                         flag1 = false;
                         flag3 = true;
                         var encrypted2 = CryptoJS.AES.encrypt(title, password);
-                        // console.log(encrypted.toString())
                         document.getElementById('enTitle').value = encrypted2;
                     }
                 } else if (chk2 && flag2) {
@@ -152,7 +150,6 @@
                         flag2 = false;
                         flag4 = true;
                         var encrypted1 = CryptoJS.AES.encrypt(source, password);
-                        // console.log(encrypted.toString())
                         document.getElementById('enSource').value = encrypted1;
                     }
                 } else if (chk1 == false && chk2 == false) {
@@ -213,8 +210,6 @@
             })
         });
     </script>
-
-
     {{ template "_headjs" }}
 </body>
 
