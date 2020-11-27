@@ -59,14 +59,14 @@ func mailserverInsert(w http.ResponseWriter, r *http.Request) {
 	ssl_tls_use := false
 
 	//imap_port1, _ := strconv.Atoi(imap_port)
-	fmt.Println("1", id, "7")
-	fmt.Println("1", mail, "7")
-	fmt.Println("2", smtp_add, "7")
-	fmt.Println("3", smtp_port, "7")
-	fmt.Println("4", imap_add, "7")
-	fmt.Println("5", imap_port, "7")
-	fmt.Println("6", mail, "7")
-	fmt.Println("7", mail_passwd, "7")
+	// fmt.Println("1", id, "7")
+	// fmt.Println("1", mail, "7")
+	// fmt.Println("2", smtp_add, "7")
+	// fmt.Println("3", smtp_port, "7")
+	// fmt.Println("4", imap_add, "7")
+	// fmt.Println("5", imap_port, "7")
+	// fmt.Println("6", mail, "7")
+	// fmt.Println("7", mail_passwd, "7")
 
 	_, err := db.Exec("INSERT INTO mail_info(mail, id, smtp_add, smtp_port, imap_add, imap_port, ssl_tls_use, mail_passwd,default_mail) VALUES($1, $2, $3, $4, $5, $6, $7, encode(encrypt(convert_to($8,'utf8'),'epjtwihnsasdc','aes'),'hex'),$9)",
 		mail, id, smtp_add, smtp_port, imap_add, imap_port, ssl_tls_use, mail_passwd, false)
@@ -98,6 +98,9 @@ func modMailServer(w http.ResponseWriter, r *http.Request) {
 	db := connectDB()
 	defer disconnectDB(db)
 
+	v1, _ := AllSessions(w, r)
+	id := fmt.Sprintf("%v", v1)
+
 	mail, _ := r.URL.Query()["mail"]
 	chk, _ := r.URL.Query()["chk"]
 	email := mail[0]
@@ -125,7 +128,7 @@ func modMailServer(w http.ResponseWriter, r *http.Request) {
 
 	} else { // 이메일 리스트 선택
 		fmt.Println(email)
-		info := getAccountInfo(db, email)
+		info := getAccountInfo(db, email, id)
 		data := make(map[string]interface{})
 
 		data["imap_add"] = info.imap_add
@@ -155,6 +158,7 @@ func mailserverUpdate(w http.ResponseWriter, r *http.Request) {
 	id := fmt.Sprintf("%v", v1)
 
 	mail := r.FormValue("mail")
+
 	tempmail := r.FormValue("tempmail")
 	fmt.Println("temp", tempmail)
 	smtp_add := r.FormValue("smtp_add")
