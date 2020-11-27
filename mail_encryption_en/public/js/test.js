@@ -971,7 +971,6 @@ function setDefault() {
 
 function logoutClick() {
   sessionStorage.removeItem("eid");
-  //alert("Logout.");
   window.location.href = "/logout";
 }
 
