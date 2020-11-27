@@ -46,12 +46,10 @@ func LoggedIn(w http.ResponseWriter, r *http.Request, urlRedirect string) {
 // NotLoggedIn 로그인이 안되었는지 확인
 func NotLoggedIn(w http.ResponseWriter, r *http.Request) {
 	id, _ := AllSessions(w, r)
-	if id != nil { //phone != nil || authkey != nil
+	if id != nil {
 		http.Redirect(w, r, "/", http.StatusFound)
 	}
 }
-
-// Invalid 오류 메세지를 보낼때 사용 하는 듯
 func Invalid(w http.ResponseWriter, r *http.Request, what int) {
 	if what == 0 {
 		http.Redirect(w, r, "/404", http.StatusFound)
