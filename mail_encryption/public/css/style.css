@@ -1,12 +1,177 @@
 .line {
-    border-right: 1px solid rgb(185, 185, 185);
-    margin-right: 10px;
+  border-right: 1px solid rgb(185, 185, 185);
+  margin-right: 10px;
 }
+
 
 td {
-    padding-left: 9px;
+  padding-left: 9px;
 }
 
+#loginAlert {
+  color: red;
+  display: none;
+}
+
+@media (max-width:391px) {
+  .mg-mt-cus1 {
+    margin-top: 10px;
+
+  }
+}
+
+@media (max-width:768px) {
+  .mg-mt-cus {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+}
+
+@media (min-width:768px) {
+  .mg-mt-cus {
+    margin-top: 0px;
+    margin-left: 9px;
+  }
+}
+
+.close2 {
+  display: block;
+
+  color: #aaa;
+  text-align: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close2:hover,
+.close2:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* pagination media query */
+.modal2 {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 10000;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content2 {
+
+  background-color: #fefefe;
+  width: 50px;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  /* Could be more or less, depending on screen size */
+}
+
+@media (min-width: 520px) and (max-width: 768px) {
+  .pagination {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 300px) {
+  .page-s {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 520px),
+(min-device-width: 0px) and (max-device-width: 520px) {
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  #tr {
+    border: 1px solid #ccc;
+  }
+
+  #td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 30%;
+  }
+
+  .td-la {
+    border-bottom: 2px solid rgb(165, 163, 163) !important;
+  }
+
+  #td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 3px;
+    left: 3px;
+    width: 10%;
+    padding-right: 5px;
+    white-space: nowrap;
+  }
+
+  /*
+      Label the data
+      */
+  #td:nth-of-type(1):before {
+    content: "Select";
+    margin-top: 10px;
+  }
+
+  #td:nth-of-type(2):before {
+    content: "Email";
+  }
+
+  #td:nth-of-type(3):before {
+    content: "Title";
+  }
+
+  #td:nth-of-type(4):before {
+    content: "Date";
+  }
+
+}
+
+#mailChk {
+  cursor: pointer;
+}
 
 /* body {
      margin: 0;
@@ -18,7 +183,6 @@ td {
      color: rgb(255, 255, 255) !important;
      text-decoration: none;
  } */
-
 
 /*
 #header {
@@ -151,9 +315,7 @@ li {
 }
  */
 
-
 /*이메일 리스트*/
-
 
 /* .table {
     border: darkgrey 1px solid;
