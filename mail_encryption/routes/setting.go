@@ -204,3 +204,29 @@ func defaultmailChange(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/set", http.StatusFound)
 }
+
+func deleteAccount(w http.ResponseWriter, r *http.Request) {
+
+	session := GetSession(w, r)
+	id := session.Values["id"]
+	accountPassword := r.FormValue("setAccPw")
+	var hashedPassword string
+
+	db := connectDB()
+	defer disconnectDB(db)
+
+	err := db.QueryRow("SELECT password FROM member WHERE id=$1", id).Scan(&hashedPassword)
+
+	if err != nil {
+		//
+	}
+
+	if EqualPassword(hashedPassword, accountPassword) == true {
+		// alert
+		db.Exec("DELETE FROM member WHERE id=$1", id)
+		db.Exec("DELETE FROM mail_info WHERE id=$1", id)
+		http.Redirect(w, r, "/login", http.StatusFound)
+	} else {
+		http.Error(w, "Please check your password", 400)
+	}
+}
