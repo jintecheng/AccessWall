@@ -699,32 +699,25 @@ function setEmailServer(e) {
 //메뉴 - 사용자 이메일 리스트 가져오기
 function mailListUp() {
   let xhr = new XMLHttpRequest();
-  //alert(sessionStorage.getItem('eid'));
-  //console.log("in js pw: " + pw);
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 201) {
-      //console.log(xhr.responseText);
       search = xhr.responseText;
       let jbSplit = search.split(";");
       jbSplit.length = jbSplit.length - 1;
       //  $('#mailList').empty();
-      //console.log("이메일 리스트: " + search);
       for (let i in jbSplit) {
         let addOp = document.createElement("option");
         // addOp.setAttribute("value", i + 1);
         addOp.innerHTML = jbSplit[i] + "</option>";
         document.getElementById("mailList").appendChild(addOp);
-        //console.log(i + ": " + jbSplit[i]);
         if (i + 1 == jbSplit.length) break;
       }
-      //console.log("mailListVal in Up: " + sessionStorage.getItem('eid'));
       if (sessionStorage.getItem("eid") != null) {
         for (
           i = 0;
           i < document.getElementById("mailList").options.length;
           i++
         ) {
-          //console.log(sessionStorage.getItem("eid"));
           if (
             document.getElementById("mailList").options[i].value ==
             sessionStorage.getItem("eid")
@@ -734,9 +727,7 @@ function mailListUp() {
           }
         }
       }
-      // alert("전송 완료!");
     } else {
-      //console.error(xhr.responseText);
       alert("Error");
       window.location.reload();
     }
