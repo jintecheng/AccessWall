@@ -607,12 +607,7 @@ function mailDelete() {
           for (let i = 0; i < a.length; i++) {
             $("#tr" + a[i]).remove();
           }
-          //$("#table-responsive").load(window.location.href + "#table-responsivee");
-          // pagination(a.length);
-          //console.log("삭제완료");
           alert("Delete Complete.");
-          //console.log(xhr.responseText);
-          // window.location.reload();
         } else {
           console.error(xhr.responseText);
           alert("Error");
@@ -621,7 +616,6 @@ function mailDelete() {
       };
       xhr.open("POST", "/mailDelete");
       xhr.setRequestHeader("Content-Type", "application/json"); // 컨텐츠타입을 json으로
-      //
       xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
       // xhr.abort(); // 전송된 요청 취소
     }
