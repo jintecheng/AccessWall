@@ -2,9 +2,10 @@
 <html>
 
 <head>
+    {{ template "_head" }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>설정</title>
+    <title>Settings</title>
 </head>
 
 
@@ -19,7 +20,6 @@
             <!-- Main Content -->
             <div id="content">
 
-
                 {{ template "_header" }}
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -29,7 +29,7 @@
                         <!-- Grow In Utility -->
                         <div class="col-lg-6">
 
-                            <div class="card position-relative">
+                            <div class="card position-relative pb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">User Email Information</h6>
                                 </div>
@@ -37,33 +37,57 @@
                                     <div class="mb-3">
                                         <div id="setMailSer">
                                             <div>
-                                                <input type="radio" id="chk_info" name="chk_info" value="imap" checked="checked"> IMAP
+                                                <input type="radio" id="chk_info" name="chk_info" value="imap"
+                                                    checked="checked"> IMAP
                                                 <input type="radio" id="chk_info" name="chk_info" value="pop"> POP3
-                                                <label for="setMailServer" style="margin-left: 6px; margin-right: 5px;"> | 이메일 서버 </label>
-                                                <select id="setMailServer" onchange="setEmailServer(this.value)" class="custom-select custom-select-sm mb-1" style="width: 15%; height: 30px;">
-                                                <option value="">직접 입력</option>
-                                            </select>
+                                                <label for="setMailServer" style="margin-left: 6px; margin-right: 5px;">
+                                                    | Email Server </label>
+                                                <select id="setMailServer" onchange="setEmailServer(this.value)"
+                                                    class="custom-select custom-select-sm mb-1"
+                                                    style="width: 15%; height: 30px;">
+                                                    <option value="">User Input</option>
+                                                </select>
+
                                             </div>
 
                                             <form id="setf" name="setf" style="margin-top: 9px;">
                                                 <div>
-                                                    <input type="text" id="imap_add" class="form-control form-control-user" name="imap_add" style="width: 47%; float: left; margin-right: 13px;" placeholder="주소">
-                                                    <input type="text" class="form-control form-control-user" style="width: 47%; float: left;" id="imap_port" name="imap_port" placeholder="포트번호">
+                                                    <input type="text" id="imap_add"
+                                                        class="form-control form-control-user" name="imap_add"
+                                                        style="width: 47%; float: left; margin-right: 13px;"
+                                                        placeholder="Address">
+                                                    <input type="text" class="form-control form-control-user"
+                                                        style="width: 47%; float: left;" id="imap_port" name="imap_port"
+                                                        placeholder="Port">
                                                 </div><br><br>
                                                 <label for="smtp" style="margin-top: 17px;">SMTP </label><br>
                                                 <div>
-                                                    <input type="text" class="form-control form-control-user" id="smtp_add" name="smtp_add" placeholder="주소" style="width: 47%; float: left; margin-right: 13px;">
-                                                    <input type="text" class="form-control form-control-user" id="smtp_port" name="smtp_port" placeholder="포트 번호" style="width: 47%; float: left;">
+                                                    <input type="text" class="form-control form-control-user"
+                                                        id="smtp_add" name="smtp_add" placeholder="Address"
+                                                        style="width: 47%; float: left; margin-right: 13px;">
+                                                    <input type="text" class="form-control form-control-user"
+                                                        id="smtp_port" name="smtp_port" placeholder="Port"
+                                                        style="width: 47%; float: left;">
                                                 </div><br><br>
-                                                <label for="set_id" style="margin-top: 17px; ">이메일 아이디 </label><br>
-                                                <input type="text" class="form-control form-control-user" style="width: 96%;" id="mail" name="mail" placeholder="아이디">
-                                                <label for="set_pw" style="margin-top: 17px;">이메일 비밀번호 </label>
-                                                <input type="text" class="form-control form-control-user" style="width: 96%;" id="mail_passwd" name="mail_passwd" placeholder="비밀번호" style="margin-bottom: 50px;">
+                                                <label for="set_id" style="margin-top: 17px; ">Email Address
+                                                </label><br>
+                                                <input type="text" class="form-control form-control-user"
+                                                    pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
+                                                    required style="width: 96%;" id="mail" name="mail"
+                                                    placeholder="Address">
+                                                <label for="set_pw" style="margin-top: 17px;">Email Password </label>
+                                                <input type="password" class="form-control form-control-user"
+                                                    autocomplete="on" style="width: 96%;" id="mail_passwd"
+                                                    name="mail_passwd" placeholder="Password"
+                                                    style="margin-bottom: 50px;">
                                                 <!-- <input type="hidden" id="tempmail" name="tempmail" value=""> -->
-                                                <div style="float: right; margin-top: 25px;">
-                                                    <input type="button" class="btn btn-outline-primary" id="set_add" name="set_add" value="추가" onclick="setAdd()">
-                                                    <input type="button" class="btn btn-outline-primary" id="set_del" name="set_del" value="삭제" onclick="setDel()">
-                                                    <input type="button" class="btn btn-outline-primary" id="set_save" name="set_save" value="저장" onclick="setMod()">
+                                                <div style="float: left; margin-top: 25px;">
+                                                    <input type="button" class="btn btn-outline-primary" id="setAdd"
+                                                        name="setAdd" value="Add">
+                                                    <input type="button" class="btn btn-outline-primary" id="setDel"
+                                                        name="setDel" value="Delete">
+                                                    <input type="button" class="btn btn-outline-primary" id="setSave"
+                                                        name="setSave" value="Update">
 
                                                 </div>
                                                 <input type="hidden" id="tempmail" name="tempmail" value="">
@@ -80,29 +104,79 @@
 
                         <!-- Fade In Utility -->
                         <div class="col-lg-6">
-
-                            <div class="card position-relative">
+                            <div class="card position-relative mb-1">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">User Email List</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <div id="setMail">
-                                            <select multiple id="setMailList" onchange="setListClick(this.value)" style="width: 100%;" class="custom-select" size="5">        
+                                            <select multiple id="setMailList" onchange="setListClick(this.value)"
+                                                style="width: 100%;" class="custom-select" size="5">
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="button" class="btn btn-outline-primary" id="set_default" name="set_default" value="기본메일 설정" onclick="setDefault()">
+                                    <input type="button" class="btn btn-outline-primary" id="setDefault"
+                                        name="setDefault" value="Set Default Mail">
+                                </div>
+                            </div>
+
+                            <div class="card position-relative">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">User Account</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form id="setAccoutFm">
+                                        <div class="mb-3">
+                                            <label for="accountPassword">Password </label>
+                                            <input type="password" class="form-control form-control-user"
+                                                autocomplete="on" style="width: 96%;" id="accountPassword"
+                                                name="accountPassword" placeholder="Password"
+                                                style="margin-bottom: 50px;">
+                                        </div>
+                                        <input type="button" class="btn btn-outline-primary" id="updatePw"
+                                            name="updatePw" value="Change Password">
+                                        <input type="button" class="btn btn-outline-primary mg-mt-cus1"
+                                            id="deleteAccount" name="deleteAccount" value="Delete Account">
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
+
+            <!-- Setting User Account Modal-->
+            <div class="modal2" id="setModal" tabindex="0">
+                <div class="modal-content2  col-10 col-md-7 text-center">
+                    <div class="d-block text-right">
+                        <i class="fas fa-times mr-1 close2 text-right" id="mdClose"></i>
+                    </div>
+
+                    <div class="container text-center justify-content-center">
+                        <form id="setModalForm" class="text-center justify-content-center m-3">
+                            <input type="password" id="setAccPw" name="setAccPw" data-backdrop="false" autocomplete="on"
+                                placeholder="Enter Password" required class="col-md-auto mx-auto" />
+                            <input type="password" id="setAccPw2" name="setAccPw2" data-backdrop="false"
+                                autocomplete="on" placeholder="Check Password" required
+                                class="col-md-auto mt-3 mb-2 mx-auto" />
+                            <!-- <input type="hidden" id="guestModalId"> -->
+                            <button class="btn btn-primary col-md-auto mg-mt-cus text-center" id="modalDelBtn"
+                                type="button" value="1">
+                                Delete
+                            </button>
+                            <button class="btn btn-primary col-md-auto  mt-1 mx-auto text-center" id="modalUpdateBtn"
+                                type="button" value="2">
+                                Change
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -120,9 +194,8 @@
     </div>
     <!-- End of Page Wrapper -->
     </div>
-
+    {{ template "_headjs" }}
     </div>
-    {{ template "_head" }}
 </body>
 
 </html>

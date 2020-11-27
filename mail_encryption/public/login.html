@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content=""> {{ template "_head" }}
-    <title>로그인</title>
+
+    <title>Login</title>
 </head>
 
 <body class="bg-gradient-primary">
@@ -17,68 +18,100 @@
             <div class="col-xl-5 col-lg-6 col-md-9">
                 <div class="card o-hidden border-0 my-5 shadow-lg">
                     <div class="card-body p-0 ">
-
                         <!-- Nested Row within Card Body -->
-
-                        <div class="p-5">
-                            <div class="text-center">
-                                <a href="/login"><img src="img\aw_icon.png" alt="placeholder" width="150px" style="margin-bottom: 25px;" /></a>
-                            </div>
-
+                        <div class="pt-5 text-center">
+                            <a href="/login"><img src="img\aw_icon.png" alt="placeholder" width="150px" /></a>
+                        </div>
+                        <div class="p-5 loginDiv">
                             <!-- Login form -->
-                            <form id="f1" name="f1" class="user" action="/loginTest" method="POST">
+                            <form id="f1" name="f1" class="user">
                                 <div class="form-group ">
-                                    <label for="id ">아이디</label>
-                                    <input type="text " id="id " name="id" class="form-control form-control-user" name="id" placeholder="ID">
+                                    <label for="id">ID</label>
+                                    <input type="text " id="id" name="id" class=" form-control jInput rounded-pill"
+                                        placeholder="ID">
                                 </div>
                                 <div class="form-group ">
-                                    <label for="pw ">비밀 번호</label>
-                                    <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="Password">
+                                    <label for="pw">Password</label>
+                                    <input type="password" class="form-control  jInput rounded-pill" id="pw" name="pw"
+                                        autocomplete="on" placeholder="Password">
                                 </div>
-                                <input type="submit" id="bnt_login" class="btn btn-primary btn-user btn-block" value="로그인">
+                                <div class="form-group ">
+                                    <label id="loginAlert">Please check your ID or
+                                        Password.</label>
+                                </div>
+                                <input type="button" id="bnt_login" class="btn btn-primary btn-user btn-block"
+                                    value="Login">
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="/join">Create an Account!</a>
+
+                            <div class="text-center"><br>
+                                <a class="" href="/join">Create an Account!</a> <br>
+                                <button class="small btn btn-link" id="forgotId">Forgot ID</button>or
+                                <button class="small btn btn-link" id="forgotPw"> Password ?</button>
+                            </div>
+                        </div>
+
+                        <!-- Find ID -->
+                        <div class="p-5 finIdDiv" hidden>
+                            <form id="f2" name="f2" class="user">
+                                <div class="form-group ">
+                                    <label for="id">Name</label>
+                                    <input type="text " id="userName" name="userName"
+                                        class=" form-control jInput rounded-pill" placeholder="Name">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="pw">Email Address</label>
+                                    <input type="text" class="form-control  jInput rounded-pill" id="userAddress"
+                                        name="userAddress" placeholder="Email Address">
+                                </div>
+                                <div class="form-group ">
+                                    <label id="loginAlert">Please check your Name or
+                                        Address.</label>
+                                </div>
+                                <input type="button" id="btnFind" class="btn btn-primary btn-user btn-block"
+                                    value="Find ID">
+                            </form>
+                            <hr>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-sm btn-link" id="findCancel">Cancel</button> <br>
+                            </div>
+                        </div>
+
+                        <!-- Find Pw -->
+                        <div class="p-5 finPwDiv" hidden>
+                            <form id="f3" name="f3" class="user">
+                                <div class="form-group ">
+                                    <label for="userName2">Name</label>
+                                    <input type="text" id="userName2" name="userName2"
+                                        class=" form-control jInput rounded-pill" placeholder="Name">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="userAddress2">Email Address</label>
+                                    <input type="text" class="form-control  jInput rounded-pill" id="userAddress2"
+                                        name="userAddress2" placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <label id="loginAlert">Please check your Name or
+                                        Address.</label>
+                                </div>
+                                <input type="button" id="btnPwFind" class="btn btn-primary btn-user btn-block"
+                                    value="Find Password">
+                            </form>
+                            <hr>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-sm btn-link" id="findCancel">Cancel</button> <br>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
+    </div>
 
-
-
-
-
-
-        <!-- <div class="fadeIn first ">
-            <img src="img\aw_icon.png " style="padding: 15px; width: 150px; height: auto; margin-bottom: 25px; " id="icon " alt="암호화 ">
-        </div> -->
-
-        <!-- Login form -->
-        <!-- <form id="f1 " name="f1 " class="user " action="/loginTest " method="POST ">
-            <label for="id ">아이디</label><input type="text " id="id " name="id " class="fadeIn second " name="id " placeholder="ID "><br><br>
-            <label for="pw ">비밀 번호</label><input type="password " id="pw " name="pw " class="fadeIn second " name="pw " placeholder="Password "><br><br><br>
-
-            <input type="submit " id="bnt_login " class="btn btn-primary btn-user btn-block " value="로그인 "> -->
-        <!-- <input type="button " id="bnt_login " class="fadeIn fourth " style="margin-top: 20px; " value="로그인 " onclick='loginPost();'> -->
-
-        <!-- </form>
-
-        <a href="/join ">회원 가입</a>
-    </div> -->
-
-        <script>
-            // window.onload = function() {
-            //     alert("첫번째 window.onload ");
-            // };
-            sessionStorage.setItem('eid', " ");
-        </script>
-
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script defer src="js/test.js"></script>
 </body>
 
 </html>

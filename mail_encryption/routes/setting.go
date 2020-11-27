@@ -48,7 +48,6 @@ func mailserverInsert(w http.ResponseWriter, r *http.Request) {
 
 	v1, _ := AllSessions(w, r)
 	id := fmt.Sprintf("%v", v1)
-	//id = id[1 : len(id)-1]
 
 	mail := r.FormValue("mail")
 	smtp_add := r.FormValue("smtp_add")
@@ -57,16 +56,6 @@ func mailserverInsert(w http.ResponseWriter, r *http.Request) {
 	imap_port := r.FormValue("imap_port")
 	mail_passwd := r.FormValue("mail_passwd")
 	ssl_tls_use := false
-
-	//imap_port1, _ := strconv.Atoi(imap_port)
-	// fmt.Println("1", id, "7")
-	// fmt.Println("1", mail, "7")
-	// fmt.Println("2", smtp_add, "7")
-	// fmt.Println("3", smtp_port, "7")
-	// fmt.Println("4", imap_add, "7")
-	// fmt.Println("5", imap_port, "7")
-	// fmt.Println("6", mail, "7")
-	// fmt.Println("7", mail_passwd, "7")
 
 	_, err := db.Exec("INSERT INTO mail_info(mail, id, smtp_add, smtp_port, imap_add, imap_port, ssl_tls_use, mail_passwd,default_mail) VALUES($1, $2, $3, $4, $5, $6, $7, encode(encrypt(convert_to($8,'utf8'),'epjtwihnsasdc','aes'),'hex'),$9)",
 		mail, id, smtp_add, smtp_port, imap_add, imap_port, ssl_tls_use, mail_passwd, false)
@@ -139,8 +128,6 @@ func modMailServer(w http.ResponseWriter, r *http.Request) {
 		data["mail_passwd"] = info.mail_passwd
 
 		doc, _ := json.Marshal(data)
-
-		//modMail := []string{info.imap_add, info.imap_port, info.smtp_add, info.smtp_port, email, info.mail_passwd}
 
 		w.Header().Set("Content-Type", "application/json")
 		//	mod := []byte(modMail)

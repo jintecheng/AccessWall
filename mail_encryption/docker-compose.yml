@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+   mail:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: in3166/mail:0.0
+    ports:
+      - "127.0.0.1:8081:8081"
+    command:
+      - /bin/bash
+    volumes:
+      - .:/go/src/github.com/mail
+    stdin_open: true
+    tty: true
+    container_name: mail
+    
+    

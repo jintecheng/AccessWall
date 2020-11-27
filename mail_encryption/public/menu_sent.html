@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
 <head>
+    {{ template "_head" }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>보낸 메일함</title>
+    <title>Sent</title>
 </head>
 
 <body id="page-top">
@@ -32,18 +33,24 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a href="#" class="btn btn-info btn-circle btn-sm">
-                                <i class="fas fa-info-circle"></i>
-                            </a>
-                            <a href="#" class="btn btn-warning btn-circle btn-sm">
+                            <button class="btn btn-info btn-circle btn-sm" id="mailRefresh">
+                                <i class="fas fa-refresh"></i>
+                            </button>
+                            <!--<a href="#" class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-exclamation-triangle"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm">
+                            </a> -->
+                            <button class="btn btn-danger btn-circle btn-sm" id="mailDelete">
                                 <i class="fas fa-trash"></i>
-                            </a>
+                            </button>
                         </div>
                         <div class="card-body">
                             {{ template "_table" .}}
+                        </div>
+                        <div class="page-s">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -71,7 +78,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    {{ template "_head" }}
+    {{ template "_headjs" }}
 
 </body>
 

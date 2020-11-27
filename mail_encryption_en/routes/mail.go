@@ -84,6 +84,7 @@ func mailRead(w http.ResponseWriter, r *http.Request) {
 	}
 	uid1, ok := r.URL.Query()["uid"]
 	num, ok := r.URL.Query()["num"] //페이지 번호
+	fmt.Println(uid1[0], ok)
 
 	uid, err := strconv.Atoi(uid1[0])
 

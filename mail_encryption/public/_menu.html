@@ -1,54 +1,65 @@
 {{define "_menu"}}
 
 <ul id="menu" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <!-- Sidebar - Brand -->
+  <!-- Sidebar - Brand -->
 
-
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
-        <div class="sidebar-brand-icon">
-            <img src="img\aw_icon2.png" id="im" name="im" class="img-fluid" alt="placeholder" />
-        </div>
-    </a>
-    <br>
-
-    <hr class="sidebar-divider my-0">
-
-    <div class="sidebar-heading">
-        Email Select
+  <a class="sidebar-brand d-flex align-items-center justify-content-center mya" href="/index">
+    <div class="sidebar-brand-icon">
+      <img src="img\aw_icon2.png" id="im" name="im" class="img-fluid" alt="placeholder" />
     </div>
+  </a>
+  <br />
 
+  <hr class="sidebar-divider my-0" />
 
-    <select id="mailList" name="mailList" class="custom-select custom-select-sm" onchange="mailList_ch(this.value)">
-            </select>
+  <div class="sidebar-heading">
+    Email Select
+  </div>
 
-    <a href="/compose" id="mbtn" style="margin: 10px; font-size: medium;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fa fa-paper-plane" aria-hidden="true"></i> 메일 쓰기</a>
-    <a href="http://ssh.ssakdook.com:9000" id="mbtn1" target="_blank" style=" margin: 10px; font-size: medium;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ">파일 암호화</a>
+  <select id="mailList" name="mailList" class="custom-select custom-select-sm" onchange="mailList_ch(this.value)">
+  </select>
 
-    <br>
-    <hr class="sidebar-divider my-0 ">
+  <a href="/compose" id="mbtn" style="margin: 7px; font-size: medium;"
+    class="mya d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    Mail Compose</a>
+  <a href="http://13.212.151.38:9000" id="mbtn1" target="_blank" style="margin: 7px; font-size: medium;"
+    class="mya d-sm-inline-block btn btn-sm btn-primary shadow-sm">File Encryption</a>
 
-    <!-- Heading -->
-    <div class="sidebar-heading ">
-        Menu
-    </div>
-    <li class="nav-item"><a class="nav-link" href="/index"><i class="fa fa-inbox"></i> <span>받은 메일함</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="/sent"><i class="fa fa-envelope"></i>  <span> 보낸 메일함</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="/spam"><i class="fa fa-ban"></i>  <span> 스팸 보관함</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="/draft"><i class="fa fa-sticky-note" aria-hidden="true"></i> <span> 임시 보관함</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="/trash"><i class="fas fa-trash"></i>  <span>휴지통</span></a></li>
+  <br />
+  <hr class="sidebar-divider my-0" />
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0 ">
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Menu
+  </div>
+  <li class="nav-item">
+    <a class="nav-link mya" href="/index"><i class="fa fa-inbox"></i> <span>Inbox</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link mya" href="/sent"><i class="fa fa-envelope"></i> <span>Sent</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link mya" href="/spam"><i class="fa fa-ban"></i> <span>Spam</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link mya" href="/draft"><i class="fa fa-sticky-note" aria-hidden="true"></i>
+      <span>Drafts</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link mya" href="/trash"><i class="fas fa-trash"></i> <span>Trash</span></a>
+  </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0" />
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block" />
 
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+  <!-- <button id="pop3Btn" class="btn-dark">pop3</button> -->
 </ul>
 
 
