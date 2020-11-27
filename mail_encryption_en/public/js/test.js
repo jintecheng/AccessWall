@@ -630,8 +630,6 @@ function mailReadDelete() {
   if (result) {
     const id = document.getElementById("mailReadDelete").value; // 메일함 종류
     const num = document.getElementById("readPageNum").value; // 메일함 종류
-    //console.log("id: " + id);
-    //console.log("num: " + num);
 
     let a = new Array();
     a.push(id);
@@ -643,7 +641,6 @@ function mailReadDelete() {
       Num: num,
     };
 
-    //console.log("data a 확인: "+data.a);
     xhr.onload = function () {
       if (xhr.status === 200 || xhr.status === 201) {
         alert("Delete Complete.");
@@ -657,7 +654,6 @@ function mailReadDelete() {
     xhr.open("POST", "/mailDelete");
     xhr.setRequestHeader("Content-Type", "application/json"); // 컨텐츠타입을 json으로
     xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
-
   } else {
     alert("Cancel");
   }
