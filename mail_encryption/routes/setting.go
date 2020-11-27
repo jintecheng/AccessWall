@@ -205,6 +205,30 @@ func defaultmailChange(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/set", http.StatusFound)
 }
 
+func changeAccountPassword(w http.ResponseWriter, r *http.Request) {
+
+	password1 := r.FormValue("setAccPw")
+	password2 := r.FormValue("setAccPw2")
+
+	if password1 == password2 {
+
+		session := GetSession(w, r)
+		id := session.Values["id"]
+
+		db := connectDB()
+		defer disconnectDB(db)
+
+		pwd := GeneratePassword(password1)
+
+		db.Exec("UPDATE member SET password=$1 WHERE id=$2", pwd, id)
+
+	} else {
+		http.Error(w, "The two passwords are diffrent", 400)
+		return
+	}
+
+}
+
 func deleteAccount(w http.ResponseWriter, r *http.Request) {
 
 	session := GetSession(w, r)
