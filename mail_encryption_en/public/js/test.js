@@ -975,10 +975,8 @@ function logoutClick() {
 }
 
 //메일 쓰기 - 암호화 체크
-// const writeEnck = () => {
 function writeEnck() {
   const enck = document.getElementById("enck");
-  //var en_sub = document.getElementById("en_sub");
   if (enck.checked) {
     document.getElementById("en_sub").style.display = "block";
   } else document.getElementById("en_sub").style.display = "none";
