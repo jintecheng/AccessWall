@@ -662,8 +662,6 @@ function mailReadDelete() {
 // 설정 - 이메일 서버 셀렉트 선택 시 주소와 포트번호 자동 설정 setonchange
 function setEmailServer(e) {
   let chk = document.querySelector('input[name="chk_info"]:checked').value;
-  //console.log(chk); //imap, pop
-  //console.log(e); // 메일 서버
 
   let ia = document.getElementById("imap_add");
   let ip = document.getElementById("imap_port");
@@ -677,12 +675,8 @@ function setEmailServer(e) {
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 201) {
       search1 = xhr.response;
-      //console.log("1" + search1);
       var obj = JSON.parse(search1);
-      //console.log("2" + obj.imap_add);
-      // console.log(xhr.responseText);
       // search1 = xhr.response;
-      // console.log(search);
       // var obj = JSON.parse(search1);
 
       ia.value = obj.imap_add;
