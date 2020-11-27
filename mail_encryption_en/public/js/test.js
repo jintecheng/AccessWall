@@ -500,9 +500,7 @@ function write() {
 
 //로그인
 function loginPost() {
-
   var queryString = $("#f1").serialize();
-
   $.ajax({
     type: 'post',
     url: '/loginTest',
@@ -518,11 +516,9 @@ function loginPost() {
       location.href = "/index";
     }
   });
-
 }
 
 function pop3Func() {
-
   $.ajax({
     type: 'get',
     url: '/pop',
@@ -553,18 +549,13 @@ function pop3Func() {
       $('#table-responsive').parent().prepend('<label>Title: ' + title + '</label><br>');
 
       document.getElementById("table-responsive").innerHTML = data1[13].Content;
-      //location.href = "/index";
+
       for (var ele in data1) {
-        /*for(var ele2 in i[ele]){
-            console.log(i[ele][ele2]);
-        } */
         console.log("--------------------------");
         console.log("Title: " + data1[ele].Title);
         console.log("From: " + data1[ele].From);
         console.log("To: " + data1[ele].To);
         console.log("Date: " + data1[ele].Date);
-        //console.log("Content: " + data1[ele].Content);
-
       }
     }
   });
@@ -592,7 +583,6 @@ function mailDelete() {
   var result = confirm("Are you sure you want to delete it?");
   if (result) {
     const menuNum = document.getElementById("menuNum"); // 메일함 종류
-    //console.log(menuNum.value);
     const mailChk = document.getElementsByName("mailChk");
     let checked = 0;
 
@@ -600,7 +590,6 @@ function mailDelete() {
 
     for (let i = 0; i < mailChk.length; i++) {
       if (mailChk[i].checked) {
-        //console.log("Uid: " + mailChk[i].value);
         a.push(mailChk[i].value);
         checked++;
       }
@@ -613,7 +602,6 @@ function mailDelete() {
         Mail: a,
         Num: menuNum.value,
       };
-      //console.log("data a 확인: "+data.a);
       xhr.onload = function () {
         if (xhr.status === 200 || xhr.status === 201) {
           for (let i = 0; i < a.length; i++) {
