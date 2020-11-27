@@ -742,24 +742,20 @@ function mailListUp() {
 function setmailListUp() {
   let xhr = new XMLHttpRequest();
 
-  // console.log("in js pw: " + pw);
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 201) {
       search = xhr.responseText;
       let jbSplit = search.split(";");
       jbSplit.length = jbSplit.length - 1;
       //  $('#mailList').empty();
-      ///console.log("설정 이메일 서버1" + search);
       for (let i in jbSplit) {
         let addOp = document.createElement("option");
         addOp.setAttribute("value", jbSplit[i]);
         addOp.innerHTML = jbSplit[i] + "</option>";
         document.getElementById("setMailList").appendChild(addOp);
-        //console.log(i + ": " + jbSplit[i]);
         if (i + 1 == jbSplit.length) break;
       }
     } else {
-      //console.error(xhr.responseText);
       alert("Error");
       window.location.reload();
     }
