@@ -951,9 +951,7 @@ function setMod() {
 
 // 설정 페이지 - 메일 기본값 설정
 function setDefault() {
-  //    var mail = document.getElementById("mail").value;
   let mail = document.getElementById("setMailList");
-  //alert("|" + mail + "|");
   if (mail.value != "") {
     mail = mail.options[mail.selectedIndex].value;
     let opt = document.createElement("input");
