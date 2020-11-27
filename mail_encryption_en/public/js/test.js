@@ -903,10 +903,8 @@ function setAdd() {
   document.getElementById("mailList").appendChild(plusUl);
 }
 
-//  설정 페이지 - 이메일 삭제
+// 설정 페이지 - 이메일 삭제
 function setDel() {
-  //var fm = document.getElementById("setfs");
-  //var email = document.getElementById("mail").value;
   const email = $("#setMailList option:selected").val();
   let x = document.getElementById("setMailList").selectedIndex;
   let y = document.getElementById("setMailList").options;
@@ -916,12 +914,6 @@ function setDel() {
   if (idx == 0) {
     alert("Default mail cannot be deleted.");
   } else {
-
-    // $("select[name='setMailList'] option:selected").remove();
-    // fm.method = "post";
-    // fm.target = "_self";
-    // fm.action = "/loginTest";
-    // fm.submit();
     post("/mailserverDelete", {
       mail: val,
     });
